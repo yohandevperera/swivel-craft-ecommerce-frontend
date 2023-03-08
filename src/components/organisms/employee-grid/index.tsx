@@ -1,4 +1,4 @@
-import Grid from "@mui/material/Grid/Grid";
+import Grid from "@mui/material/Grid";
 import React from "react";
 import { EmployeeType } from "../../../services/employee";
 import GridItem from "../../molecules/grid-item";

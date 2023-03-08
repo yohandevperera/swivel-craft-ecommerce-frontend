@@ -23,6 +23,7 @@ const FormOptionFeild: React.FC<FormOptionFeildProps> = (props) => (
     <FormControl fullWidth margin="normal">
       <InputLabel id={props.id}>{props.label}</InputLabel>
       <Field
+        key={props.id}
         id={props.id}
         name={props.name}
         label={props.label}

@@ -60,11 +60,15 @@ const SearchFeild: React.FC<SearchFeildProps> = (props) => {
       >
         {props.searchButtonText}
       </Button>
-      <IconButton color="primary" aria-label="upload picture" component="label">
-        <div onClick={props.onSearchRefresh}>
+      <div onClick={props.onSearchRefresh}>
+        <IconButton
+          color="primary"
+          aria-label="upload picture"
+          component="label"
+        >
           <RefreshIcon />
-        </div>
-      </IconButton>
+        </IconButton>
+      </div>
     </>
   );
 };

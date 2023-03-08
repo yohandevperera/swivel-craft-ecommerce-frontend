@@ -10,7 +10,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import GlobalIconButton from "../../atoms/icon-button";
 import { useState } from "react";
-import Button from "@mui/material/Button/Button";
+import Button from "@mui/material/Button";
 import DeleteEmployeeDialog from "../delete-employee-dialog";
 import { NavLink as RouterLink } from "react-router-dom";
 

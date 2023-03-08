@@ -1,7 +1,7 @@
 import Card from "@mui/material/Card";
 import Box from "@mui/material/Box";
 import { Button } from "@mui/material";
-import CardContent from "@mui/material/CardContent/CardContent";
+import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import { Formik, Form, FormikHelpers, FormikProps } from "formik";
 import FormFeilds from "../../molecules/form-feilds";
@@ -16,7 +16,7 @@ interface EmployeeFormProps {
     values: Omit<EmployeeType, "photo" | "_id">,
     helpers: FormikHelpers<Omit<EmployeeType, "_id" | "photo">>
   ) => void | Promise<any>;
-  formRef: React.RefObject<FormikProps<any>>;
+  formRef?: React.RefObject<FormikProps<any>>;
 }
 
 const EmployeeForm: React.FC<EmployeeFormProps> = (props) => {
