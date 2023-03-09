@@ -19,6 +19,14 @@ import {
 } from "../../../redux/reducers/employees/employees-thunks";
 import { useNavigate } from "react-router-dom";
 
+/**
+ * Usage - This component is used for to manipulate the add and edit operations of the employees.
+ *
+ * Description - The component is build based on the Material Ui components and custom components
+ *
+ * @props type @typedef enum
+ */
+
 const EmployeesAddEditForm: React.FC<{ type: "add" | "edit" }> = (props) => {
   const { id } = useParams();
   const dispatch = useDispatch();

@@ -7,6 +7,17 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
 import Button from "@mui/material/Button";
 
+/**
+ * Usage - This component is used as a dialog box to delete employee records.
+ *
+ * Description - The component is build based on the material UI Dialog components
+ *
+ * @props openState @typedef boolean
+ * @props setOpenState @typedef React.Dispatch<React.SetStateAction<boolean>>
+ * @props employeeId @typedef string
+ * @props handleDelete @typedef function
+ */
+
 interface DeleteEmployeeDialogProps {
   openState: boolean;
   setOpenState: React.Dispatch<React.SetStateAction<boolean>>;

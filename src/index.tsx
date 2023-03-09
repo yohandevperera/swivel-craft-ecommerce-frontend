@@ -7,6 +7,12 @@ import configureStore from "./redux/store/configureStore";
 import { BrowserRouter } from "react-router-dom";
 import { initSentryLogger } from "./utils/logger";
 
+/**
+ * Description & Usage - This component main rendering component
+ * which will include the Browser Router and the Provider for the redux store.
+ *
+ */
+
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );

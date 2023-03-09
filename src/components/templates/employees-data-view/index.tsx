@@ -20,6 +20,13 @@ import {
 } from "@mui/material/Autocomplete";
 import { EmployeeType, getAllEmployees } from "../../../services/employee";
 
+/**
+ * Usage - This component is used for to manipulate the employee data view.
+ *
+ * Description - The component is build based on the Material Ui components and custom components
+ *
+ */
+
 const EmployeeDataView: React.FC = () => {
   const [viewShift, setViewShift] = useState<"grid" | "list">("grid");
   const [searchValue, setSearchValue] = useState<NonNullable<

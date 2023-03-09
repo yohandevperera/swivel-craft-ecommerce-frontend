@@ -9,6 +9,20 @@ import {
 import MenuItem from "@mui/material/MenuItem";
 import _ from "lodash";
 
+/**
+ * Usage - This component can be used as a 
+ * global form option feild.
+ *
+ * Description - The component is build based on the material UI option and formik option
+ * 
+ * @props id @typedef string
+ * @props name @typedef string
+ * @props label @typedef string
+ * @props isRequired @typedef boolean
+ * @props type @typedef React.InputHTMLAttributes<unknown>["type"]
+ * @props valuesAndLabels @typedef any[]
+ */
+
 interface FormOptionFeildProps {
   id: string;
   name: string;

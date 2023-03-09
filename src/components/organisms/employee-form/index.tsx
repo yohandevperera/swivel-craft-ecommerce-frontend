@@ -10,6 +10,16 @@ import _ from "lodash";
 import { employeeValidationSchema } from "../../../validations/employee-form-validations";
 import { EmployeeType } from "../../../services/employee";
 
+/**
+ * Usage - This component is used to build the add and edit form.
+ *
+ * Description - The component is build based on the Material Ui components
+ *
+ * @props type @typedef enum
+ * @props onFormSubmit @typedef function
+ * @props formRef @typedef React.RefObject<FormikProps<any>>
+ */
+
 interface EmployeeFormProps {
   type: "edit" | "add";
   onFormSubmit: (

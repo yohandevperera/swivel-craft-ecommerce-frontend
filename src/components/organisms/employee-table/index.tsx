@@ -16,6 +16,16 @@ import { useState } from "react";
 import DeleteEmployeeDialog from "../../molecules/delete-employee-dialog";
 import { NavLink as RouterLink } from "react-router-dom";
 
+/**
+ * Usage - This component is used to display the table view of the employee data.
+ *
+ * Description - The component is build based on the Material Ui components
+ *
+ * @props tableData @typedef EmployeeType[]
+ * @props tableHeadings @typedef string[]
+ * @props handleEmployeeDelete @typedef function
+ */
+
 const EmployeeTable: React.FC<{
   tableData: EmployeeType[];
   tableHeadings: string[];

@@ -4,6 +4,20 @@ import CircularProgress from "@mui/material/CircularProgress";
 import FormFeild from "../../atoms/form-text-feild";
 import FormOptionFeild from "../../atoms/form-option-feild";
 
+/**
+ * Usage - This component is used as a dynamic form feild mapper.
+ *
+ * Description - The component is build based on the react custom components
+ *
+ * @props id @typedef string
+ * @props name @typedef string
+ * @props label @typedef string
+ * @props type @typedef function
+ * @props required @typedef boolean
+ * @props validate @typedef boolean
+ * @props valuesAndLabels @typedef any[]
+ */
+
 export type formFeildType = {
   id: string;
   name: string;

@@ -1,6 +1,22 @@
 import actionTypes from "./employees-actionTypes";
 import initialState from "./employees-intialStates";
 
+
+/**
+ * Usage - This file will manipulate the defined global redux states.
+ *
+ * Description - All the defined global redux states can be manipulated using this file
+ */
+
+
+/**
+ *
+ * Description - The function that will be used as the state reducer to manipulate
+ * the defined states
+ * 
+ * @param state @typedef object
+ * @param action @typedef any
+ */
 const employeeReducer = (state = initialState, action: any) => {
   const { type, payload } = action;
   switch (type) {

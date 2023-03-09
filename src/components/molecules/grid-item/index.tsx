@@ -14,6 +14,15 @@ import Button from "@mui/material/Button";
 import DeleteEmployeeDialog from "../delete-employee-dialog";
 import { NavLink as RouterLink } from "react-router-dom";
 
+/**
+ * Usage - This component is used for to display a single item in the created grid view.
+ *
+ * Description - The component is build based on the Material Ui Paper, Grid and other components
+ *
+ * @props item @typedef EmployeeType
+ * @props handleDelete @typedef function
+ */
+
 const GridItem: React.FC<{
   item: EmployeeType;
   handleDelete: (employeeId: string) => void;

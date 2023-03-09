@@ -1,5 +1,17 @@
 import IconButton from "@mui/material/IconButton";
 
+/**
+ * Usage - This component can be used as a global icon button.
+ *
+ * Description - The component is build based on the material UI IconButton
+ * 
+ * @props isButtonDisabled @typedef boolean
+ * @props color @typedef enum
+ * @props icon @typedef any
+ * @props divStyle @typedef React.CSSProperties
+ * @props divOnClick @typedef React.MouseEventHandler<HTMLDivElement>
+ */
+
 interface GlobalIconButtonProps {
   isButtonDisabled: boolean;
   color:

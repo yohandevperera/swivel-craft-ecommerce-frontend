@@ -10,12 +10,24 @@ import {
 } from "../../../services/employee";
 import _ from "lodash";
 
+/**
+ * Usage - This file will be used to communcate with the API services via redux.
+ *
+ * Description - This file will act as a mediator for the services and the redux global states
+ */
+
 export type createAndEditEmployeeParams = {
   type: "add" | "edit";
   employee: Omit<EmployeeType, "photo" | "_id">;
   employeeId?: string;
 };
 
+/**
+ * Description and Usage - This function that will be used load all the users
+ * to the redux state
+ *
+ * @param dispatch @typedef Dispatch
+ */
 export const loadAllEmployees = () => (dispatch: Dispatch) => {
   dispatch(actions.employeeLoadStart());
   getAllEmployees()
@@ -29,6 +41,13 @@ export const loadAllEmployees = () => (dispatch: Dispatch) => {
     });
 };
 
+/**
+ * Description and Usage - This function that will be used create and edit employees
+ * by fetching the payload from the redux state
+ *
+ * @param dispatch @typedef Dispatch
+ * @param params @typedef createAndEditEmployeeParams
+ */
 export const createAndEditEmployees =
   (params: createAndEditEmployeeParams) => (dispatch: Dispatch) => {
     dispatch(actions.employeeLoadStart());
@@ -59,6 +78,13 @@ export const createAndEditEmployees =
     }
   };
 
+/**
+ * Description and Usage - This function that will be used remove employees
+ * by fetching the employee id as the payload from the redux state
+ *
+ * @param dispatch @typedef Dispatch
+ * @param id @typedef string
+ */
 export const removeEmployee = (id: string) => (dispatch: Dispatch) => {
   dispatch(actions.employeeLoadStart());
   deleteEmployee(id)
@@ -72,6 +98,13 @@ export const removeEmployee = (id: string) => (dispatch: Dispatch) => {
     });
 };
 
+/**
+ * Description and Usage - This function that will be used to fetch 
+ * a single employee for a given employee id 
+ *
+ * @param dispatch @typedef Dispatch
+ * @param id @typedef string
+ */
 export const getSingleEmployee = (id?: string) => (dispatch: Dispatch) => {
   dispatch(actions.employeeLoadStart());
   getEmployee(id)
@@ -85,6 +118,16 @@ export const getSingleEmployee = (id?: string) => (dispatch: Dispatch) => {
     });
 };
 
+/**
+ * Description and Usage - This function that will be used as a 
+ * sorting and search function to sort all the employees
+ *
+ * @param dispatch @typedef Dispatch
+ * @param firstname @typedef any
+ * @param employees @typedef EmployeeType[]
+ * @param type @typedef enum
+ * @param method @typedef enum
+ */
 export const searchAndSortEmployee =
   (
     firstname: any,

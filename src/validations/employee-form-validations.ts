@@ -2,6 +2,19 @@ import _ from "lodash";
 import * as Yup from "yup";
 import formFeilds from "../utils/form-feilds.json";
 
+/**
+ *
+ * Description & Usage  - This file willhandle all the
+ * form validations using yup and the created dynamic feild list
+ *
+ */
+
+/**
+ *
+ * Description - The map that will validate the
+ * form feilds according to its feild type
+ *
+ */
 const formValidations: any = formFeilds.map((feild) => {
   if (!_.isEmpty(feild) && !_.isEmpty(feild.type)) {
     switch (feild.type) {
@@ -36,6 +49,11 @@ const formValidations: any = formFeilds.map((feild) => {
   }
 });
 
+/**
+ * Description - Restructuring the feild validation
+ * map
+ *
+ */
 let mappedformValidations = {};
 formValidations.forEach((value: any) => {
   const validationKeys = Object.keys(value);
@@ -45,11 +63,11 @@ formValidations.forEach((value: any) => {
   };
 });
 
+/**
+ * Description - structuring and shaping the feild validation
+ * map as a Yup object
+ *
+ */
 export const employeeValidationSchema = Yup.object().shape(
   mappedformValidations
 );
-
-// {
-//   firstname: Yup.string().min(6, "The entered value is short").required("Sdsd"),
-//   lastname: Yup.string().required("Sdsd"),
-// }

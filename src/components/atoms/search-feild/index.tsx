@@ -9,6 +9,24 @@ import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import RefreshIcon from "@mui/icons-material/Refresh";
 
+/**
+ * Usage - This component can be used as a global search feild.
+ *
+ * Description - The component is build based on the material UI Autocomplete
+ *
+ * @props disableClearable @typedef boolean
+ * @props optionsData @typedef EmployeeType[]
+ * @props textOnChange @typedef function
+ * @props id @typedef string
+ * @props style @typedef React.CSSProperties
+ * @props searchLabel @typedef string
+ * @props searchButtonText @typedef string
+ * @props searchButtonOnClick @typedef React.MouseEventHandler<HTMLButtonElement>
+ * @props searchValue @typedef any
+ * @props searchOnChange @typedef function
+ * @props onSearchRefresh @typedef function
+ */
+
 interface SearchFeildProps {
   disableClearable: boolean;
   optionsData: EmployeeType[];

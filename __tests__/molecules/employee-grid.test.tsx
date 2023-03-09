@@ -8,6 +8,8 @@ import configureStore from "../../src/redux/store/configureStore";
 import GridItem from "../../src/components/molecules/grid-item";
 import renderer from "react-test-renderer";
 
+
+// Sample data set to check the grid view
 const employee: EmployeeType = {
   email: "Darrin_Rippin@gmail.com",
   firstname: "Henri",
@@ -18,8 +20,10 @@ const employee: EmployeeType = {
   _id: "63ff04ffb8e613034a3ea943",
 };
 
+// the store instance created to access the redux store
 const store = configureStore();
 
+// test snapshot to validate the data grid view
 describe("Employee grid snapshot", () => {
   it("should render the employee gird with the meta test data", () => {
     const domTree = renderer

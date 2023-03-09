@@ -5,10 +5,20 @@ import GridItem from "../../molecules/grid-item";
 import _ from "lodash";
 import CircularProgress from "@mui/material/CircularProgress";
 
+/**
+ * Usage - This component is used to display the grid view of the employee data.
+ *
+ * Description - The component is build based on the Material Ui components and custom components
+ *
+ * @props gridDir @typedef enum
+ * @props gridData @typedef EmployeeType[]
+ * @props formRef @typedef function
+ */
+
 const EmployeeGrid: React.FC<{
   gridDir: "column" | "row";
   gridData: EmployeeType[];
-  handleEmployeeDelete: (employeeId:string) => void;
+  handleEmployeeDelete: (employeeId: string) => void;
 }> = (props) => {
   return (
     <>

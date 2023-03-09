@@ -12,6 +12,25 @@ import {
   AutocompleteChangeReason,
 } from "@mui/material/Autocomplete";
 
+
+/**
+ * Usage - This component is used as a button grid which includes a combination of the 
+ * custom created global button, icon button, material buttons and the custom search feild.
+ *
+ * Description - The component is build based on the material UI button and custom components
+ *
+ * @props viewShift @typedef enum
+ * @props viewShiftOnclick @typedef function
+ * @props redirectLink @typedef string
+ * @props searchOptionData @typedef EmployeeType[]
+ * @props searchValue @typedef string
+ * @props searchOnClick @typedef React.MouseEventHandler<HTMLButtonElement>
+ * @props searchOnChange @typedef function
+ * @props onSearchRefresh @typedef React.MouseEventHandler<HTMLDivElement>
+ * @props sortShift @typedef enum
+ * @props sortShiftOnclick @typedef React.MouseEventHandler<HTMLDivElement>
+ */
+
 const ButtonGrid: React.FC<{
   viewShift: "grid" | "list";
   viewShiftOnclick: React.MouseEventHandler<HTMLDivElement>;

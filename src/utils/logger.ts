@@ -2,6 +2,20 @@ import * as Sentry from "@sentry/react";
 import { BrowserTracing } from "@sentry/tracing";
 import _ from "lodash";
 
+/**
+ *
+ * Description & Usage  - This file will act as the main config file
+ * to initialize sentry
+ *
+ */
+
+
+/**
+ *
+ * Description & Usage  - This function will be used as the sentry 
+ * initialization function
+ *
+ */
 export const initSentryLogger = () => {
   if (
     !_.isUndefined(process.env.REACT_APP_ENVIRONMENT) &&

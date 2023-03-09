@@ -2,6 +2,13 @@ import { Route, Routes } from "react-router-dom";
 import Home from "../../../pages/home";
 import EmployeeForm from "../../../pages/employee-form-page";
 
+/**
+ * Usage - This component is used as a wrapper to wrap all the routes that are used in the frontend.
+ *
+ * Description - The component is build based on the react-router-dom
+ 
+ */
+
 const AppRoutes: React.FC = () => {
   return (
     <>
