@@ -11,10 +11,10 @@ import {
   AutocompleteChangeDetails,
   AutocompleteChangeReason,
 } from "@mui/material/Autocomplete";
-
+import { Card, CardContent } from "@mui/material";
 
 /**
- * Usage - This component is used as a button grid which includes a combination of the 
+ * Usage - This component is used as a button grid which includes a combination of the
  * custom created global button, icon button, material buttons and the custom search feild.
  *
  * Description - The component is build based on the material UI button and custom components
@@ -50,35 +50,42 @@ const ButtonGrid: React.FC<{
 }> = (props) => {
   return (
     <>
-      <SearchFeild
-        disableClearable={true}
-        id="employee-search"
-        optionsData={props.searchOptionData}
-        searchOnChange={props.searchOnChange}
-        style={{ float: "left", width: "30%", marginBottom: 10 }}
-        searchLabel="Search employee by firstname"
-        searchButtonText="Search"
-        searchButtonOnClick={props.searchOnClick}
-        searchValue={props.searchValue}
-        onSearchRefresh={props.onSearchRefresh}
-      />
-      <GlobalIconButton
-        color="primary"
-        divStyle={{  }}
-        icon={
-          props.sortShift == "disorder" ? (
-            <SortByAlphaIcon />
-          ) : (
-            <TableRowsIcon />
-          )
-        }
-        isButtonDisabled={true}
-        divOnClick={props.sortShiftOnclick}
-      />
+      <Card sx={{ minWidth: 275, height: 100 }}>
+        <CardContent sx={{ marginTop: 2 }}>
+          <SearchFeild
+            disableClearable={true}
+            id="employee-search"
+            optionsData={props.searchOptionData}
+            searchOnChange={props.searchOnChange}
+            style={{ float: "left", width: "100%", marginBottom: 10 }}
+            searchLabel="Search employee by firstname"
+            searchButtonText="Search"
+            searchButtonOnClick={props.searchOnClick}
+            searchValue={props.searchValue}
+            onSearchRefresh={props.onSearchRefresh}
+            sortComponent={
+              <GlobalIconButton
+                color="primary"
+                divStyle={{}}
+                icon={
+                  props.sortShift === "disorder" ? (
+                    <SortByAlphaIcon />
+                  ) : (
+                    <TableRowsIcon />
+                  )
+                }
+                isButtonDisabled={false}
+                divOnClick={props.sortShiftOnclick}
+                toolTipText={"Sort Employees"}
+              />
+            }
+          />
+        </CardContent>
+      </Card>
       <GlobalIconButton
         color="primary"
         divStyle={{ float: "right" }}
-        icon={props.viewShift == "grid" ? <TocIcon /> : <ViewModuleIcon />}
+        icon={props.viewShift === "grid" ? <TocIcon /> : <ViewModuleIcon />}
         isButtonDisabled={true}
         divOnClick={props.viewShiftOnclick}
       />

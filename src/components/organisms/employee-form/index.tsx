@@ -6,7 +6,6 @@ import Typography from "@mui/material/Typography";
 import { Formik, Form, FormikHelpers, FormikProps } from "formik";
 import FormFeilds from "../../molecules/form-feilds";
 import feildData from "../../../utils/form-feilds.json";
-import _ from "lodash";
 import { employeeValidationSchema } from "../../../validations/employee-form-validations";
 import { EmployeeType } from "../../../services/employee";
 
@@ -54,7 +53,7 @@ const EmployeeForm: React.FC<EmployeeFormProps> = (props) => {
       >
         <CardContent>
           <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-            {props.type == "add" ? "Add Employee" : "Edit Employee"}
+            {props.type === "add" ? "Add Employee" : "Edit Employee"}
           </Typography>
           <Box>
             <Formik
@@ -67,7 +66,7 @@ const EmployeeForm: React.FC<EmployeeFormProps> = (props) => {
               <Form>
                 <FormFeilds feilds={feildData} />
                 <Button type="submit" variant="contained" color="primary">
-                  {props.type == "add" ? "Add Employee" : "Edit Employee"}
+                  {props.type === "add" ? "Add Employee" : "Edit Employee"}
                 </Button>
               </Form>
             </Formik>

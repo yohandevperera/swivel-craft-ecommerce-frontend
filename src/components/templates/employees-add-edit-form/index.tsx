@@ -13,8 +13,8 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
 import { useEffect, useRef } from "react";
 import {
-  createAndEditEmployees,
-  createAndEditEmployeeParams,
+  editEmployees,
+  createEmployees,
   getSingleEmployee,
 } from "../../../redux/reducers/employees/employees-thunks";
 import { useNavigate } from "react-router-dom";
@@ -30,17 +30,18 @@ import { useNavigate } from "react-router-dom";
 const EmployeesAddEditForm: React.FC<{ type: "add" | "edit" }> = (props) => {
   const { id } = useParams();
   const dispatch = useDispatch();
-  const employeeAddEditedResponse = useSelector(
-    (state: any) => state.employees
-  );
+  const { employees } = useSelector((state: any) => state);
   const formRef = useRef<FormikProps<any>>(null);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (props.type == "edit") {
-      dispatch(getSingleEmployee(id) as any);
+  useEffect(
+    () => dispatch(getSingleEmployee(id) as any),
+    [dispatch, props.type, id]
+  );
 
-      let employee = employeeAddEditedResponse.employee;
+  useEffect(() => {
+    if (props.type === "edit") {
+      let employee = employees.employee;
       const feildNames = Object.keys(employee || {}).slice(1, -1);
       if (!_.isEmpty(feildNames)) {
         feildNames.map((feildName: string) => {
@@ -49,66 +50,36 @@ const EmployeesAddEditForm: React.FC<{ type: "add" | "edit" }> = (props) => {
             phone: Number(employee["phone"]),
           };
           formRef.current?.setFieldValue(feildName, employee[feildName], false);
+          return employee;
         });
       }
     }
-  }, [employeeAddEditedResponse.employee, id]);
+  }, [employees.employee]);
 
-  const handleAddAndEditEmployees = (
+  const notifyUser = () => {
+    if (
+      _.has(employees, "employee.message") &&
+      !_.isEmpty(employees.employee)
+    ) {
+      const createdResponse = employees.employee;
+      toast.success(createdResponse.message, { position: "bottom-right" });
+    }
+  };
+
+  useEffect(() => notifyUser(), [employees, employees.employee]);
+
+  const handleFormSubmit = (
     values: Omit<EmployeeType, "photo" | "_id">,
     helpers: FormikHelpers<Omit<EmployeeType, "photo" | "_id">>
   ) => {
-    if (props.type == "add") {
-      const employeeCreateParams: createAndEditEmployeeParams = {
-        employee: values,
-        type: "add",
-      };
-      dispatch(createAndEditEmployees(employeeCreateParams) as any);
-
-      if (
-        _.has(employeeAddEditedResponse, "errorMessage") &&
-        !_.isEmpty(employeeAddEditedResponse.errorMessage)
-      ) {
-        toast.error(employeeAddEditedResponse.errorMessage, {
-          position: "bottom-right",
-        });
-      }
-
-      if (
-        _.has(employeeAddEditedResponse, "employee.message") &&
-        !_.isEmpty(employeeAddEditedResponse.employee)
-      ) {
-        const createdResponse = employeeAddEditedResponse.employee;
-        toast.success(createdResponse.message, { position: "bottom-right" });
-        navigate(0);
-      }
+    if (props.type === "add") {
+      dispatch(createEmployees(values) as any);
     }
-    if (props.type == "edit" && !_.isUndefined(id)) {
-      const employeeEditParams: createAndEditEmployeeParams = {
-        employee: values,
-        type: "edit",
-        employeeId: id,
-      };
-      dispatch(createAndEditEmployees(employeeEditParams) as any);
-      if (
-        _.has(employeeAddEditedResponse, "errorMessage") &&
-        !_.isEmpty(employeeAddEditedResponse.errorMessage)
-      ) {
-        toast.error(employeeAddEditedResponse.errorMessage, {
-          position: "bottom-right",
-        });
-      }
-
-      if (
-        _.has(employeeAddEditedResponse, "employee.message") &&
-        !_.isEmpty(employeeAddEditedResponse.employee)
-      ) {
-        const createdResponse = employeeAddEditedResponse.employee;
-        toast.success(createdResponse.message, { position: "bottom-right" });
-        navigate(0);
-      }
+    if (props.type === "edit" && !_.isUndefined(id)) {
+      dispatch(editEmployees(values, id) as any);
     }
   };
+
   return (
     <Box>
       <PageHelmet />
@@ -124,7 +95,7 @@ const EmployeesAddEditForm: React.FC<{ type: "add" | "edit" }> = (props) => {
         List View
       </Button>
       <EmployeeForm
-        onFormSubmit={handleAddAndEditEmployees}
+        onFormSubmit={handleFormSubmit}
         type={props.type}
         formRef={formRef}
       />

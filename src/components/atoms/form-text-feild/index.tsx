@@ -2,11 +2,11 @@ import { TextField } from "@mui/material";
 import { Field, ErrorMessage } from "formik";
 
 /**
- * Usage - This component can be used as a 
+ * Usage - This component can be used as a
  * global form text feild.
  *
  * Description - The component is build based on the material UI textFeild and formik feild
- * 
+ *
  * @props id @typedef string
  * @props name @typedef string
  * @props label @typedef string
@@ -32,7 +32,12 @@ const FormFeild: React.FC<FormFeildProps> = (props) => (
       fullWidth
       margin={"normal"}
       as={TextField}
-      helperText={<ErrorMessage name={props.name} />}
+      helperText={
+        <ErrorMessage
+          render={(message) => <div style={{ color: "red" }}>{message}</div>}
+          name={props.name}
+        />
+      }
       type={props.type}
     />
   </>

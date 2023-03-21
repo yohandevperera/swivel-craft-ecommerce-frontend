@@ -12,7 +12,8 @@ import "react-toastify/dist/ReactToastify.min.css";
 import {
   loadAllEmployees,
   removeEmployee,
-  searchAndSortEmployee,
+  searchEmployees,
+  orderEmployees,
 } from "../../../redux/reducers/employees/employees-thunks";
 import {
   AutocompleteChangeDetails,
@@ -29,9 +30,7 @@ import { EmployeeType, getAllEmployees } from "../../../services/employee";
 
 const EmployeeDataView: React.FC = () => {
   const [viewShift, setViewShift] = useState<"grid" | "list">("grid");
-  const [searchValue, setSearchValue] = useState<NonNullable<
-    string | EmployeeType
-  > | null>("");
+  const [searchValue, setSearchValue] = useState<any>("");
   const [employeeList, setEmployeeList] = useState<EmployeeType[]>([]);
   const [sortOrder, setSortOrder] = useState<"sort" | "disorder">("disorder");
 
@@ -50,7 +49,7 @@ const EmployeeDataView: React.FC = () => {
 
   useEffect(() => {
     dispatch(loadAllEmployees() as any);
-  }, [employeeData.employee]);
+  }, [dispatch]);
 
   useEffect(() => {
     getAllEmployees()
@@ -70,16 +69,6 @@ const EmployeeDataView: React.FC = () => {
     if (!_.isEmpty(employeeId) && !_.isUndefined(employeeId)) {
       dispatch(removeEmployee(employeeId) as any);
     }
-
-    if (
-      _.has(employeeData, "errorMessage") &&
-      !_.isEmpty(employeeData.errorMessage)
-    ) {
-      toast.error(employeeData.errorMessage, {
-        position: "bottom-right",
-      });
-    }
-
     if (
       _.has(employeeData, "employee.message") &&
       !_.isEmpty(employeeData.employee)
@@ -93,19 +82,14 @@ const EmployeeDataView: React.FC = () => {
     if (_.isUndefined(searchValue) || _.isEmpty(searchValue)) {
       dispatch(loadAllEmployees() as any);
     } else {
-      dispatch(
-        searchAndSortEmployee(searchValue, employeeList, "search") as any
-      );
+      dispatch(searchEmployees(searchValue) as any);
     }
   };
 
   const handleOnSortClick = () => {
-    sortOrder == "sort" ? setSortOrder("disorder") : setSortOrder("sort");
-    if (!_.isEmpty(employeeList) && !_.isUndefined(employeeList)) {
-      dispatch(
-        searchAndSortEmployee("", employeeList, "sort", sortOrder) as any
-      );
-    }
+    sortOrder === "sort" ? setSortOrder("disorder") : setSortOrder("sort");
+    const sortType = sortOrder === "sort" ? "asc" : "desc";
+    dispatch(orderEmployees(sortType) as any);
   };
 
   return (
@@ -114,7 +98,7 @@ const EmployeeDataView: React.FC = () => {
         <ButtonGrid
           viewShift={viewShift}
           viewShiftOnclick={() =>
-            viewShift == "grid" ? setViewShift("list") : setViewShift("grid")
+            viewShift === "grid" ? setViewShift("list") : setViewShift("grid")
           }
           redirectLink="/employee-add"
           searchOptionData={employeeList}
@@ -141,7 +125,7 @@ const EmployeeDataView: React.FC = () => {
           />
         ) : (
           <>
-            {viewShift == "grid" ? (
+            {viewShift === "grid" ? (
               <EmployeeGrid
                 gridData={employeeData.employees}
                 gridDir={"row"}

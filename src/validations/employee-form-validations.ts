@@ -33,9 +33,13 @@ const formValidations: any = formFeilds.map((feild) => {
         };
       case "number":
         return {
-          [feild.name]: Yup.number()
+          [feild.name]: Yup.string()
             .typeError("Enter a valid phone number")
-            .required("This feild is required"),
+            .required("This feild is required")
+            .matches(
+              /^(?:0|94|\+94)?(?:(11|21|23|24|25|26|27|31|32|33|34|35|36|37|38|41|45|47|51|52|54|55|57|63|65|66|67|81|912)(0|2|3|4|5|7|9)|7(0|1|2|4|5|6|7|8)\d)\d{6}$/,
+              "Please enter a valid sri lankan number"
+            ),
         };
       case "options":
         return {

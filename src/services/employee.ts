@@ -53,7 +53,7 @@ export async function editEmployee(
   employee: Omit<EmployeeType, "_id" | "photo">,
   id?: string
 ) {
-  return invoke(`api/employees/${id}`, "put", employee);
+  return invoke(`api/employees/${id}`, "patch", employee);
 }
 
 /**
@@ -74,4 +74,25 @@ export async function deleteEmployee(id: string) {
  */
 export async function getEmployee(id?: string) {
   return invoke(`api/employees/${id}`, "get", {});
+}
+
+/**
+ * Description and Usage - This function will be used
+ * to fetch a single employee for a given firstname using the backend API endpoint
+ *
+ * @param firstname @typedef string
+ */
+export async function searchEmployeeByFirstname(firstname?: string) {
+  return invoke(`api/employees/find-by-name/${firstname}`, "get", {});
+}
+
+/**
+ * Description and Usage - This function will be used
+ * to sort all employees by the id by either ascending or descending 
+ * order using the backend API endpoint
+ *
+ * @param type @typedef enum
+ */
+export async function sortEmployees(type?: "asc" | "desc") {
+  return invoke(`api/employees/sort-employees/${type}`, "get", {});
 }

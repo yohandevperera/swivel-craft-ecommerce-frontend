@@ -27,7 +27,7 @@ export interface ResponseType {
  */
 export const invoke = async (
   route: string,
-  method: "get" | "post" | "put" | "delete",
+  method: "get" | "post" | "put" | "delete" | "patch",
   data: any
 ): Promise<any> => {
   return axios({
