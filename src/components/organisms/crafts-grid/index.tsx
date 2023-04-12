@@ -1,24 +1,23 @@
 import Grid from "@mui/material/Grid";
 import React from "react";
-import { EmployeeType } from "../../../services/employee";
+import { CraftType } from "../../../services/crafts";
 import GridItem from "../../molecules/grid-item";
 import _ from "lodash";
 import CircularProgress from "@mui/material/CircularProgress";
 
 /**
- * Usage - This component is used to display the grid view of the employee data.
+ * Usage - This component is used to display the grid view of the craft data.
  *
  * Description - The component is build based on the Material Ui components and custom components
  *
  * @props gridDir @typedef enum
- * @props gridData @typedef EmployeeType[]
- * @props formRef @typedef function
+ * @props gridData @typedef CraftType[]
  */
 
 const EmployeeGrid: React.FC<{
   gridDir: "column" | "row";
-  gridData: EmployeeType[];
-  handleEmployeeDelete: (employeeId: string) => void;
+  gridData: CraftType[];
+  handleAddToCart: (craftId: string) => void;
 }> = (props) => {
   return (
     <>
@@ -38,9 +37,9 @@ const EmployeeGrid: React.FC<{
             }}
           />
         ) : (
-          props.gridData.map((item: EmployeeType) => (
+          props.gridData.map((item: CraftType) => (
             <Grid item xs={3}>
-              <GridItem item={item} handleDelete={props.handleEmployeeDelete} />
+              <GridItem item={item} handleAddToCart={props.handleAddToCart} />
             </Grid>
           ))
         )}

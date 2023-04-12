@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import employeeReducer from "./employees/employees-reducer";
+import craftReducer from "./crafts/crafts-reducer";
 
 /**
  * Description and Usage - This function and file will act
@@ -9,7 +9,7 @@ import employeeReducer from "./employees/employees-reducer";
 
 const rootReducer = () =>
   combineReducers({
-    employees: employeeReducer,
+    crafts: craftReducer,
   });
 
 export default rootReducer;

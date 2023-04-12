@@ -4,9 +4,10 @@
  * Description - Using this file the intial state value for the reducers can be gained
  */
 
+// eslint-disable-next-line import/no-anonymous-default-export
 export default {
   isLoading: false,
-  employees: null,
+  crafts: null,
   errorMessage: null,
-  employee: null
+  craft: null,
 };

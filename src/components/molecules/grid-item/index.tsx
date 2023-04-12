@@ -1,18 +1,12 @@
 import { Box } from "@mui/material";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
-import { EmployeeType } from "../../../services/employee";
+import { CraftType } from "../../../services/crafts";
 import GlobalImg from "../../atoms/image";
 import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
-import _ from "lodash";
-import DeleteIcon from "@mui/icons-material/Delete";
-import EditIcon from "@mui/icons-material/Edit";
 import GlobalIconButton from "../../atoms/icon-button";
-import { useState } from "react";
-import Button from "@mui/material/Button";
-import DeleteEmployeeDialog from "../delete-employee-dialog";
-import { NavLink as RouterLink } from "react-router-dom";
+import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 
 /**
  * Usage - This component is used for to display a single item in the created grid view.
@@ -20,16 +14,13 @@ import { NavLink as RouterLink } from "react-router-dom";
  * Description - The component is build based on the Material Ui Paper, Grid and other components
  *
  * @props item @typedef EmployeeType
- * @props handleDelete @typedef function
+ * @props handleAddToCart @typedef function
  */
 
 const GridItem: React.FC<{
-  item: EmployeeType;
-  handleDelete: (employeeId: string) => void;
+  item: CraftType;
+  handleAddToCart: (craftId: string) => void;
 }> = (props) => {
-  const [deleteDialogVisiblity, setDeleteDialogVisiblity] =
-    useState<boolean>(false);
-
   return (
     <Paper
       sx={{
@@ -67,45 +58,29 @@ const GridItem: React.FC<{
           <Grid item xs container direction="column" spacing={2}>
             <Grid item xs>
               <Typography gutterBottom variant="subtitle1" component="div">
-                {`${props.item.firstname}   ${props.item.lastname}`}
+                {`${props.item.name}`}
               </Typography>
               <Typography variant="body2" gutterBottom>
-                {_.truncate(props.item.email, {
-                  length: 25,
-                  omission: "..",
-                })}
+                {/* Later change this to category name */}
+                {`${props.item.categoryId}`}
               </Typography>
               <Typography variant="body2" color="text.secondary">
-                {props.item.phone}
+                {props.item.price}
               </Typography>
               <Typography variant="body2" color="text.secondary">
-                {props.item.gender == "M" ? "Male" : "Female"}
+                {`Items available  ${props.item.qty}`}
               </Typography>
             </Grid>
             <Grid item>
               <Stack direction="row" sx={{ float: "right" }}>
-                <Button
-                  disableRipple
-                  component={RouterLink}
-                  to={`/employee-edit/${props.item._id}`}
-                >
-                  <EditIcon />
-                </Button>
-
                 <GlobalIconButton
                   color="primary"
                   divStyle={{}}
-                  icon={<DeleteIcon />}
+                  icon={<AddShoppingCartIcon />}
                   isButtonDisabled={true}
-                  divOnClick={() => setDeleteDialogVisiblity(true)}
+                  divOnClick={() => {}}
                 />
               </Stack>
-              <DeleteEmployeeDialog
-                openState={deleteDialogVisiblity}
-                setOpenState={setDeleteDialogVisiblity}
-                employeeId={props.item._id}
-                handleDelete={props.handleDelete}
-              />
             </Grid>
           </Grid>
         </Grid>

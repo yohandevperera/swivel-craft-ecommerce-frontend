@@ -1,10 +1,9 @@
 import Header from "../../components/atoms/header";
 import PageHelmet from "../../components/atoms/helmet";
-import EmployeeDataView from "../../components/templates/employees-data-view";
-
+import CraftDataView from "../../components/templates/crafts-data-view";
 
 /**
- * Usage - This component will directly call the PageHelmet, Header and EmployeeDataView components.
+ * Usage - This component will directly call the PageHelmet, Header and CraftDataView components.
  *
  * Description - The component is build based on custom components
  *
@@ -13,8 +12,8 @@ import EmployeeDataView from "../../components/templates/employees-data-view";
 const Home: React.FC = () => (
   <>
     <PageHelmet />
-    <Header title="Employee Manager" />
-    <EmployeeDataView />
+    <Header title="Craft Manager" />
+    <CraftDataView />
   </>
 );
 

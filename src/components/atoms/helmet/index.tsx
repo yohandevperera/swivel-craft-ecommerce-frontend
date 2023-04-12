@@ -1,6 +1,5 @@
 import { Helmet } from "react-helmet";
 
-
 /**
  * Usage - This component can be used as a
  * global title for to display the page name in the tab of a browser.
@@ -13,7 +12,7 @@ const PageHelmet: React.FC = () => {
   return (
     <Helmet>
       <meta charSet="utf-8" />
-      <title>Employee Manager</title>
+      <title>Craft E-commerce</title>
     </Helmet>
   );
 };

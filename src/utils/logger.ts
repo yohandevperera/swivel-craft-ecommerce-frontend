@@ -19,7 +19,7 @@ import _ from "lodash";
 export const initSentryLogger = () => {
   if (
     !_.isUndefined(process.env.REACT_APP_ENVIRONMENT) &&
-    process.env.REACT_APP_ENVIRONMENT == "production"
+    process.env.REACT_APP_ENVIRONMENT === "production"
   ) {
     Sentry.init({
       dsn: _.isUndefined(process.env.REACT_APP_SENTRY_DSN)

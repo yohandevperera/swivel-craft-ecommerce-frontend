@@ -1,6 +1,5 @@
-import actionTypes from "./employees-actionTypes";
-import initialState from "./employees-intialStates";
-
+import actionTypes from "./crafts-actionTypes";
+import initialState from "./crafts-intialStates";
 
 /**
  * Usage - This file will manipulate the defined global redux states.
@@ -8,39 +7,38 @@ import initialState from "./employees-intialStates";
  * Description - All the defined global redux states can be manipulated using this file
  */
 
-
 /**
  *
  * Description - The function that will be used as the state reducer to manipulate
  * the defined states
- * 
+ *
  * @param state @typedef object
  * @param action @typedef any
  */
-const employeeReducer = (state = initialState, action: any) => {
+const craftReducer = (state = initialState, action: any) => {
   const { type, payload } = action;
   switch (type) {
-    case actionTypes.EMPLOYEE_LOAD_START:
+    case actionTypes.CRAFT_LOAD_START:
       return {
         ...state,
         isLoading: true,
-        employees: null,
+        crafts: null,
         errorMessage: null,
       };
-    case actionTypes.EMPLOYEE_LOAD_SUCCESS:
+    case actionTypes.CRAFT_LOAD_SUCCESS:
       return {
         ...state,
         isLoading: false,
-        employees: payload,
-        employeeList: payload,
+        crafts: payload,
+        craftList: payload,
       };
-    case actionTypes.SINGLE_EMPLOYEE_LOAD_SUCCESS:
+    case actionTypes.SINGLE_CRAFT_LOAD_SUCCESS:
       return {
         ...state,
         isLoading: false,
-        employee: payload,
+        craft: payload,
       };
-    case actionTypes.EMPLOYEE_LOAD_ERROR:
+    case actionTypes.CRAFT_LOAD_ERROR:
       return {
         ...state,
         isLoading: false,
@@ -52,4 +50,4 @@ const employeeReducer = (state = initialState, action: any) => {
   }
 };
 
-export default employeeReducer;
+export default craftReducer;
