@@ -1,4 +1,6 @@
+import { FormikHelpers } from "formik";
 import FormContainer from "../../components/templates/form-container";
+import craftfeildData from "../../utils/form-feilds/crafts-form-feilds.json";
 
 /**
  * Usage - This component will directly call the PageHelmet, Header and CraftDataView components.
@@ -48,7 +50,27 @@ const CraftCategoryManagement: React.FC = () => {
 
   return (
     <>
-      <FormContainer />
+      <FormContainer
+        addButtonText="Add Craft"
+        navBarTitleText="Crafts Management"
+        formFeildData={craftfeildData}
+        formIntialValues={[]}
+        formValidationSchema={[]}
+        handleDelete={() => {}}
+        onFormSubmit={(values: any, helpers: FormikHelpers<any>) => {
+          console.log(values);
+        }}
+        onSearchRefresh={() => {}}
+        searchOnChange={() => {}}
+        searchOnClick={() => {}}
+        searchOptionData={[]}
+        searchValue=""
+        tableData={[]}
+        tableHeadings={[""]}
+        tableDataKeys={[]}
+        titleKey="Craft"
+        formType="add"
+      />
     </>
   );
 };

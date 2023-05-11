@@ -18,12 +18,12 @@ import FormFeilds, { formFeildType } from "../../molecules/form-feilds";
 interface FormContainerProps {
   // formProps
   formType: "add" | "edit";
-  formRef: React.RefObject<FormikProps<any>>;
+  formRef?: React.RefObject<FormikProps<any>>;
   onFormSubmit: (
     values: any,
     helpers: FormikHelpers<any>
   ) => void | Promise<any>;
-  formFeildData: formFeildType[];
+  formFeildData: any;
   formIntialValues: any;
   formValidationSchema: any;
 
@@ -46,7 +46,6 @@ interface FormContainerProps {
   searchValue: string;
   addButtonText: string;
   navBarTitleText: string;
-  addFormDialogTitleText: string;
   titleKey: string;
 }
 
@@ -81,7 +80,11 @@ const FormContainer: React.FC<FormContainerProps> = (props) => {
         open={openAddFormDialog}
         onClose={() => setOpenAddFormDialog(false)}
       >
-        <DialogTitle>{props.addFormDialogTitleText}</DialogTitle>
+        <DialogTitle>
+          {props.formType === "add"
+            ? `Add ${props.titleKey}`
+            : `Edit ${props.titleKey}`}
+        </DialogTitle>
         <Formik
           onSubmit={props.onFormSubmit}
           initialValues={props.formIntialValues}

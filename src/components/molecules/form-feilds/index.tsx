@@ -3,6 +3,7 @@ import React from "react";
 import CircularProgress from "@mui/material/CircularProgress";
 import FormFeild from "../../atoms/form-text-feild";
 import FormOptionFeild from "../../atoms/form-option-feild";
+import FormFileUploadFeild from "../../atoms/form-file-upload-feild";
 
 /**
  * Usage - This component is used as a dynamic form feild mapper.
@@ -26,6 +27,8 @@ export type formFeildType = {
   required: boolean;
   validate: boolean;
   valuesAndLabels?: any[];
+  optionKeys?: {};
+  route: string;
 };
 
 const FormFeilds: React.FC<{ feilds: formFeildType[] }> = (props) => {
@@ -40,12 +43,16 @@ const FormFeilds: React.FC<{ feilds: formFeildType[] }> = (props) => {
           case "number":
             return <FormFeild {...feild} key={index} />;
           case "options":
-            return <FormOptionFeild {...feild} />;
+            return <FormOptionFeild {...feild} optionType="default" />;
+          case "api-options":
+            return <FormOptionFeild {...feild} optionType="api-option" />;
+          case "file":
+            return <FormFileUploadFeild {...feild} />;
           default:
             return <></>;
         }
       }
-      return <></>
+      return <></>;
     });
     return feilds;
   } else {

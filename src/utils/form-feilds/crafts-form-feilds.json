@@ -1,0 +1,53 @@
+[
+  {
+    "id": "name",
+    "name": "name",
+    "label": "Name",
+    "type": "text",
+    "required": true,
+    "validate": true
+  },
+  {
+    "id": "categoryId",
+    "name": "categoryId",
+    "label": "Craft Category",
+    "type": "api-options",
+    "route": "api/craft-categories",
+    "optionKeys": {
+      "valueKey": "_id",
+      "nameKey": "name"
+    },
+    "required": true,
+    "validate": true
+  },
+  {
+    "id": "description",
+    "name": "description",
+    "label": "Description",
+    "type": "text",
+    "required": true,
+    "validate": true
+  },
+  {
+    "id": "qty",
+    "name": "qty",
+    "label": "Qty",
+    "type": "number",
+    "required": true,
+    "validate": true
+  },
+  {
+    "id": "price",
+    "name": "price",
+    "label": "Price",
+    "type": "number",
+    "required": true,
+    "validate": true
+  },
+  {
+    "id": "photo",
+    "name": "photo",
+    "label": "Upload Craft Photo",
+    "type": "file"
+  }
+]

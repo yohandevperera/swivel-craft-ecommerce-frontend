@@ -9,7 +9,7 @@ import FormContainer from "../../components/templates/form-container";
 
 const CraftsManagement: React.FC = () => (
   <>
-    <FormContainer />
+    {/* <FormContainer  /> */}
   </>
 );
 
