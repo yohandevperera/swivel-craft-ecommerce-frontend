@@ -1,6 +1,7 @@
 import { TextField } from "@mui/material";
 import { Field, ErrorMessage } from "formik";
-import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { getAndSetImageBase64 } from "../../../redux/thunks/image-view-uploader-thunk";
 
 /**
  * Usage - This component can be used as a
@@ -24,7 +25,7 @@ interface FormFeildProps {
 }
 
 const FormFileUploadFeild: React.FC<FormFeildProps> = (props) => {
-  const [uploadedFile, setUploadedFile] = useState<any>();
+  const dispatch = useDispatch();
 
   const convertBase64 = (file: any) => {
     return new Promise((resolve, reject) => {
@@ -59,7 +60,7 @@ const FormFileUploadFeild: React.FC<FormFeildProps> = (props) => {
           e.preventDefault();
           const file = e.target.files[0];
           const base64 = await convertBase64(file);
-          setUploadedFile(base64);
+          dispatch(getAndSetImageBase64(base64) as any);
         }}
       />
     </>
