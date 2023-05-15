@@ -1,5 +1,5 @@
 import { Dispatch } from "redux";
-import actions from "../reducers/image-view-uploader/image-view-uploader-actions";
+import actions from "../reducers/image-view-uploader-reducer/image-view-uploader-actions";
 import _ from "lodash";
 
 /**

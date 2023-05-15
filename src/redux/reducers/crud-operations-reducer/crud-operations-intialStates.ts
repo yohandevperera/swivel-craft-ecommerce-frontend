@@ -7,7 +7,7 @@
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
   isLoading: false,
-  crafts: null,
+  dataSet: null,
   errorMessage: null,
-  craft: null,
+  data: null,
 };

@@ -5,7 +5,7 @@ import CraftGrid from "../../organisms/crafts-grid";
 import CircularProgress from "@mui/material/CircularProgress";
 import _ from "lodash";
 import "react-toastify/dist/ReactToastify.min.css";
-import { loadAllCrafts } from "../../../redux/reducers/crafts/crafts-thunks";
+// import { loadAllCrafts } from "../../../redux/reducers/crafts/crafts-thunks";
 
 /**
  * Usage - This component is used for to manipulate the craft data view.
@@ -19,7 +19,7 @@ const CraftDataView: React.FC = () => {
   const craftData = useSelector((state: any) => state.crafts);
 
   useEffect(() => {
-    dispatch(loadAllCrafts() as any);
+    // dispatch(loadAllCrafts() as any);
   }, [dispatch]);
 
   return (

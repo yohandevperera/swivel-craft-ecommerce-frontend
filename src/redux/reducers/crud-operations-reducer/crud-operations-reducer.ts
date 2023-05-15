@@ -1,5 +1,5 @@
-import actionTypes from "./crafts-actionTypes";
-import initialState from "./crafts-intialStates";
+import actionTypes from "./crud-operations-actionTypes";
+import initialState from "./crud-operations-intialStates";
 
 /**
  * Usage - This file will manipulate the defined global redux states.
@@ -15,34 +15,40 @@ import initialState from "./crafts-intialStates";
  * @param state @typedef object
  * @param action @typedef any
  */
-const craftReducer = (state = initialState, action: any) => {
+const crudOperationsReducer = (state = initialState, action: any) => {
   const { type, payload } = action;
   switch (type) {
-    case actionTypes.CRAFT_LOAD_START:
+    case actionTypes.LOAD_START:
       return {
         ...state,
         isLoading: true,
-        crafts: null,
+        dataSet: null,
         errorMessage: null,
+        data: null,
       };
-    case actionTypes.CRAFT_LOAD_SUCCESS:
+    case actionTypes.LOAD_SUCCESS:
       return {
         ...state,
         isLoading: false,
-        crafts: payload,
-        craftList: payload,
+        dataSet: payload,
+        errorMessage: null,
+        data: payload,
       };
-    case actionTypes.SINGLE_CRAFT_LOAD_SUCCESS:
+    case actionTypes.SINGLE_LOAD_SUCCESS:
       return {
         ...state,
         isLoading: false,
-        craft: payload,
+        dataSet: null,
+        errorMessage: null,
+        data: payload,
       };
-    case actionTypes.CRAFT_LOAD_ERROR:
+    case actionTypes.LOAD_ERROR:
       return {
         ...state,
         isLoading: false,
+        dataSet: null,
         errorMessage: payload,
+        data: null,
       };
 
     default:
@@ -50,4 +56,4 @@ const craftReducer = (state = initialState, action: any) => {
   }
 };
 
-export default craftReducer;
+export default crudOperationsReducer;

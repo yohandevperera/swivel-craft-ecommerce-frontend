@@ -59,7 +59,7 @@ const FormFileUploadFeild: React.FC<FormFeildProps> = (props) => {
         onChange={async (e: any) => {
           e.preventDefault();
           const file = e.target.files[0];
-          const base64 = await convertBase64(file);
+          const base64: any = await convertBase64(file);
           dispatch(getAndSetImageBase64(base64) as any);
         }}
       />

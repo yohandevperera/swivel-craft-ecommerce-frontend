@@ -1,5 +1,6 @@
 import { combineReducers } from "redux";
-import craftReducer from "./crafts/crafts-reducer";
+import imageReducer from "./image-view-uploader-reducer/image-view-uploader-reducer";
+import crudOperationsReducer from "./crud-operations-reducer/crud-operations-reducer";
 
 /**
  * Description and Usage - This function and file will act
@@ -9,7 +10,8 @@ import craftReducer from "./crafts/crafts-reducer";
 
 const rootReducer = () =>
   combineReducers({
-    crafts: craftReducer,
+    crudOperations: crudOperationsReducer,
+    imageUploader: imageReducer,
   });
 
 export default rootReducer;

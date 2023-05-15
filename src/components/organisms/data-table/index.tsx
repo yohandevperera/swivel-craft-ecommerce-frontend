@@ -59,65 +59,19 @@ const DataTable: React.FC<{
             {_.isEmpty(props.tableData) ? (
               <></>
             ) : (
-              props.tableData.map((row) => (
-                <TableRow
-                  key={row._id}
-                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                >
-                  <TableCell component="th" scope="row">
-                    <Box
-                      sx={{
-                        width: 128,
-                        height: 128,
-                        alignItems: "center",
-                        alignContent: "center",
-                      }}
-                    >
-                      <GlobalImg
-                        imageAlt="complex"
-                        imageStyle={{
-                          margin: "auto",
-                          display: "block",
-                          maxWidth: "100%",
-                          maxHeight: "100%",
-                        }}
-                        imageSrc={row.photo}
-                      />
-                    </Box>
-                  </TableCell>
-                  <TableCell align="right">{row.firstname}</TableCell>
-                  <TableCell align="right">{row.lastname}</TableCell>
-                  <TableCell align="right">{row.email}</TableCell>
-                  <TableCell align="right">{row.phone}</TableCell>
-                  <TableCell align="right">{row.gender}</TableCell>
-                  <TableCell align="right">
-                    <Stack direction="row" alignItems="end" spacing={2}>
-                      <Button
-                        disableRipple
-                        component={RouterLink}
-                        to={`/employee-edit/${row._id}`}
-                      >
-                        Edit
-                      </Button>
-                      <div onClick={() => setDeleteDialogVisiblity(true)}>
-                        <IconButton
-                          color="primary"
-                          aria-label="upload picture"
-                          component="label"
-                        >
-                          <DeleteIcon />
-                        </IconButton>
-                      </div>
-                    </Stack>
-                    <DeleteEmployeeDialog
-                      openState={deleteDialogVisiblity}
-                      setOpenState={setDeleteDialogVisiblity}
-                      employeeId={row._id}
-                      handleDelete={props.handleDelete}
-                    />
-                  </TableCell>
-                </TableRow>
-              ))
+              <TableRow
+                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+              >
+                {props.tableData.map((row, index) => (
+                  <TableRow key={index}>
+                    {Object.values(row).map((value: any, index) => {
+                      return (
+                        <></>
+                      )
+                    })}
+                  </TableRow>
+                ))}
+              </TableRow>
             )}
           </TableBody>
         </Table>
