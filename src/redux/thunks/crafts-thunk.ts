@@ -9,6 +9,7 @@ import {
   getCraft,
 } from "../../services/crafts";
 import _ from "lodash";
+import { getCraftCategory } from "../../services/craft-categories";
 
 /**
  * Usage - This file will be used to communcate with the API services via redux.
@@ -22,20 +23,47 @@ import _ from "lodash";
  *
  * @param dispatch @typedef Dispatch
  */
-export const loadAllCrafts = () => (dispatch: Dispatch) => {
-  dispatch(actions.loadStart());
-  getAllCrafts()
-    .then((response) => {
-      if (_.isEmpty(response) || _.isNull(response)) {
-        throw Error("error loading all crafts response null");
-      }
-      const crafts = response.data.data;
-      dispatch(actions.loadSuccess(crafts));
-    })
-    .catch((error) => {
-      dispatch(actions.loadError(error.message));
-      throw Error(error.message);
-    });
+export const loadAllCrafts = () => async (dispatch: Dispatch) => {
+  try {
+    dispatch(actions.loadStart());
+    const response = await getAllCrafts();
+    if (_.isEmpty(response.data) || _.isNull(response.data.data)) {
+      throw Error("error loading all crafts response null");
+    }
+    const crafts: any[] = response.data.data;
+    const restructuredCrafts = await Promise.all(
+      crafts.map(async (craft: CraftType) => {
+        const craftCategory = await getCraftCategory(craft.categoryId);
+        return {
+          description: craft.description,
+          name: craft.name,
+          photo: craft.photo,
+          price: craft.price,
+          qty: craft.qty,
+          craftCategory: _.isNull(craftCategory.data.data.name)
+            ? ""
+            : craftCategory.data.data.name,
+        };
+      })
+    );
+    console.log(restructuredCrafts);
+  } catch (error: any) {
+    dispatch(actions.loadError(error.message));
+    throw Error(error.message);
+  }
+
+  // getAllCrafts()
+  //   .then(async (response) => {
+
+  //     const crafts: any[] = response.data.data;
+  //
+  //     console.log("sd");
+  //     console.log(restructuredCrafts);
+  //     dispatch(actions.loadSuccess(crafts));
+  //   })
+  //   .catch((error) => {
+
+  //   });
 };
 
 /**

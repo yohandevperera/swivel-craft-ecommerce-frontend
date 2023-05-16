@@ -64,10 +64,35 @@ const DataTable: React.FC<{
               >
                 {props.tableData.map((row, index) => (
                   <TableRow key={index}>
-                    {Object.values(row).map((value: any, index) => {
-                      return (
-                        <></>
-                      )
+                    {Object.entries(row).map(([key, value], index) => {
+                      const data: any = value;
+                      if (key === "photo" && value) {
+                        return (
+                          <TableCell key={index}>
+                            <Box
+                              sx={{
+                                width: 128,
+                                height: 128,
+                                alignItems: "center",
+                                alignContent: "center",
+                              }}
+                            >
+                              <GlobalImg
+                                imageAlt="complex"
+                                imageStyle={{
+                                  margin: "auto",
+                                  display: "block",
+                                  maxWidth: "100%",
+                                  maxHeight: "100%",
+                                }}
+                                imageSrc={row.photo}
+                              />
+                            </Box>
+                          </TableCell>
+                        );
+                      } else {
+                        return <TableCell key={index}>{data}</TableCell>;
+                      }
                     })}
                   </TableRow>
                 ))}
