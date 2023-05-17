@@ -4,11 +4,17 @@ import craftfeildData from "../../utils/form-feilds/crafts-form-feilds.json";
 import { useSelector } from "react-redux";
 import { validationSchema } from "../../validations/craft-form-validations";
 import { useDispatch } from "react-redux";
-import { createCrafts, loadAllCrafts } from "../../redux/thunks/crafts-thunk";
+import {
+  createCrafts,
+  loadAllCrafts,
+  removecraft,
+} from "../../redux/thunks/crafts-thunk";
 import _ from "lodash";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { getAllCrafts } from "../../services/crafts";
+import { CraftType } from "../../services/crafts";
 
 /**
  * Usage - This component will directly call the PageHelmet, Header and CraftDataView components.
@@ -21,6 +27,8 @@ const CraftCategoryManagement: React.FC = () => {
   const dispatch = useDispatch();
 
   const { imageUploader, crudOperations } = useSelector((state: any) => state);
+  const [searchValue, setSearchValue] = useState<string>("");
+  const [craftsList, setCraftsList] = useState<CraftType[]>([]);
 
   const initialValues = {
     name: "",
@@ -45,19 +53,36 @@ const CraftCategoryManagement: React.FC = () => {
     dispatch(loadAllCrafts() as any);
   }, [dispatch]);
 
-  const handleDeleteCrafts = async (
-    event: React.FormEvent<HTMLFormElement>
-  ) => {
-    // todo - if no extras handle the response
+  useEffect(() => {
+    getAllCrafts()
+      .then((response) => {
+        if (_.has(response, "data.data")) {
+          _.isEmpty(response.data.data)
+            ? setCraftsList([])
+            : setCraftsList(response.data.data);
+        }
+      })
+      .catch((error: any) => {
+        throw Error(error.message);
+      });
+  }, []);
 
-    event.preventDefault();
-    const formData = new FormData(event.currentTarget);
-    const craft: any = {
-      id: String(formData.get("txtExtraDescription")),
-      name: String(formData.get("txtBoosterSeats")),
-      lastName: String(formData.get("txtBabySeats")),
-    };
+  console.log(craftsList);
+
+  const handleDelete = (id: string) => {
+    if (!_.isEmpty(id) && !_.isUndefined(id)) {
+      dispatch(removecraft(id) as any);
+    }
+    if (
+      _.has(crudOperations, "dataSet.message") &&
+      !_.isEmpty(crudOperations.dataSet)
+    ) {
+      const createdResponse = crudOperations.dataSet;
+      toast.success(createdResponse.message, { position: "bottom-right" });
+    }
   };
+
+  // console.log(crudOperations);
 
   const notifyUser = () => {
     if (
@@ -80,13 +105,16 @@ const CraftCategoryManagement: React.FC = () => {
         formFeildData={craftfeildData}
         formIntialValues={initialValues}
         formValidationSchema={validationSchema}
-        handleDelete={() => {}}
+        handleDelete={handleDelete}
         onFormSubmit={onFormSubmit}
         onSearchRefresh={() => {}}
-        searchOnChange={() => {}}
-        searchOnClick={() => {}}
-        searchOptionData={[]}
-        searchValue=""
+        searchOnChange={(
+          event: React.SyntheticEvent<Element, Event>,
+          value: string
+        ) => setSearchValue(value)}
+        searchOnClick={() => console.log(searchValue)}
+        searchOptionData={craftsList}
+        searchValue={searchValue}
         tableData={crudOperations.dataSet}
         tableHeadings={[
           "Name",
@@ -95,14 +123,7 @@ const CraftCategoryManagement: React.FC = () => {
           "Price",
           "Qty",
           "Photo",
-        ]}
-        tableDataKeys={[
-          "name",
-          "categoryName",
-          "description",
-          "price",
-          "qty",
-          "photo",
+          "Actions",
         ]}
         titleKey="Craft"
         formType="add"

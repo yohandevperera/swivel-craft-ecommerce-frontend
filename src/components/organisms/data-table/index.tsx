@@ -50,7 +50,7 @@ const DataTable: React.FC<{
                 <></>
               ) : (
                 props.tableHeadings.map((headingName: string) => (
-                  <TableCell align="center">{headingName}</TableCell>
+                  <TableCell>{headingName}</TableCell>
                 ))
               )}
             </TableRow>
@@ -59,44 +59,67 @@ const DataTable: React.FC<{
             {_.isEmpty(props.tableData) ? (
               <></>
             ) : (
-              <TableRow
-                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-              >
-                {props.tableData.map((row, index) => (
-                  <TableRow key={index}>
-                    {Object.entries(row).map(([key, value], index) => {
-                      const data: any = value;
-                      if (key === "photo" && value) {
-                        return (
-                          <TableCell key={index}>
-                            <Box
-                              sx={{
-                                width: 128,
-                                height: 128,
-                                alignItems: "center",
-                                alignContent: "center",
+              props.tableData.map((row, index) => (
+                <TableRow key={index}>
+                  {Object.entries(row).map(([key, value], index) => {
+                    const data: any = value;
+                    if (key === "photo" && value) {
+                      return (
+                        <TableCell key={index}>
+                          <Box
+                            sx={{
+                              width: 128,
+                              height: 128,
+                              alignItems: "center",
+                              alignContent: "center",
+                            }}
+                          >
+                            <GlobalImg
+                              imageAlt="complex"
+                              imageStyle={{
+                                margin: "auto",
+                                display: "block",
+                                maxWidth: "100%",
+                                maxHeight: "100%",
                               }}
-                            >
-                              <GlobalImg
-                                imageAlt="complex"
-                                imageStyle={{
-                                  margin: "auto",
-                                  display: "block",
-                                  maxWidth: "100%",
-                                  maxHeight: "100%",
-                                }}
-                                imageSrc={row.photo}
-                              />
-                            </Box>
-                          </TableCell>
-                        );
-                      } else {
-                        return <TableCell key={index}>{data}</TableCell>;
-                      }
-                    })}
-                  </TableRow>
-                ))}
-              </TableRow>
+                              imageSrc={row.photo}
+                            />
+                          </Box>
+                        </TableCell>
+                      );
+                    } else if (key !== "_id") {
+                      return <TableCell key={index}>{data}</TableCell>;
+                    }
+                  })}
+                  <TableCell align="right">
+                    <Stack direction="row" alignItems="end" spacing={2}>
+                      <Button
+                        disableRipple
+                        component={RouterLink}
+                        to={`/employee-edit/${row._id}`}
+                      >
+                        Edit
+                      </Button>
+                      <div onClick={() => setDeleteDialogVisiblity(true)}>
+                        <IconButton
+                          color="primary"
+                          aria-label="upload picture"
+                          component="label"
+                        >
+                          <DeleteIcon />
+                        </IconButton>
+                      </div>
+                    </Stack>
+                    <DeleteEmployeeDialog
+                      openState={deleteDialogVisiblity}
+                      setOpenState={setDeleteDialogVisiblity}
+                      id={row._id}
+                      handleDelete={props.handleDelete}
+                    />
+                  </TableCell>
+                  ;
+                </TableRow>
+              ))
             )}
           </TableBody>
         </Table>

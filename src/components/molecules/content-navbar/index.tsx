@@ -27,7 +27,7 @@ interface ContentNavBarProps {
   searchOnClick: React.MouseEventHandler<HTMLButtonElement>;
   searchOnChange: (
     event: React.SyntheticEvent<Element, Event>,
-    value: NonNullable<string> | null,
+    value: any,
     reason: AutocompleteChangeReason,
     details?: AutocompleteChangeDetails<any> | undefined
   ) => void;

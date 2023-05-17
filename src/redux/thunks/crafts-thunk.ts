@@ -35,35 +35,21 @@ export const loadAllCrafts = () => async (dispatch: Dispatch) => {
       crafts.map(async (craft: CraftType) => {
         const craftCategory = await getCraftCategory(craft.categoryId);
         return {
-          description: craft.description,
           name: craft.name,
-          photo: craft.photo,
+          craftCategory: craftCategory?.data?.data?.name,
+          description: craft.description,
           price: craft.price,
           qty: craft.qty,
-          craftCategory: _.isNull(craftCategory.data.data.name)
-            ? ""
-            : craftCategory.data.data.name,
+          photo: craft.photo,
+          _id: craft._id,
         };
       })
     );
-    console.log(restructuredCrafts);
+    dispatch(actions.loadSuccess(restructuredCrafts));
   } catch (error: any) {
     dispatch(actions.loadError(error.message));
     throw Error(error.message);
   }
-
-  // getAllCrafts()
-  //   .then(async (response) => {
-
-  //     const crafts: any[] = response.data.data;
-  //
-  //     console.log("sd");
-  //     console.log(restructuredCrafts);
-  //     dispatch(actions.loadSuccess(crafts));
-  //   })
-  //   .catch((error) => {
-
-  //   });
 };
 
 /**

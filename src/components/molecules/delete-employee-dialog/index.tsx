@@ -21,14 +21,13 @@ import Button from "@mui/material/Button";
 interface DeleteEmployeeDialogProps {
   openState: boolean;
   setOpenState: React.Dispatch<React.SetStateAction<boolean>>;
-  employeeId: string;
+  id: string;
   handleDelete: (employeeId: string) => void;
 }
 
 const DeleteEmployeeDialog: React.FC<DeleteEmployeeDialogProps> = (props) => {
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
-
   return (
     <div>
       <Dialog
@@ -48,10 +47,7 @@ const DeleteEmployeeDialog: React.FC<DeleteEmployeeDialogProps> = (props) => {
           <Button autoFocus onClick={() => props.setOpenState(false)}>
             Cancel
           </Button>
-          <Button
-            onClick={() => props.handleDelete(props.employeeId)}
-            autoFocus
-          >
+          <Button onClick={() => props.handleDelete(props.id)} autoFocus>
             Delete
           </Button>
         </DialogActions>

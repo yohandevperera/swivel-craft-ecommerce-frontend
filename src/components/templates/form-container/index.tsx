@@ -30,17 +30,16 @@ interface FormContainerProps {
   // Datatable props
   tableHeadings: string[];
   tableData: any[];
-  tableDataKeys: string[];
   handleDelete: (id: string) => void;
 
   // Content Navbar props
   onSearchRefresh: React.MouseEventHandler<HTMLDivElement>;
   searchOnChange: (
     event: React.SyntheticEvent<Element, Event>,
-    value: string | null,
+    value: string,
     reason: AutocompleteChangeReason,
     details?: AutocompleteChangeDetails<any> | undefined
-  ) => void;
+  ) => any;
   searchOnClick: React.MouseEventHandler<HTMLButtonElement>;
   searchOptionData: any[];
   searchValue: string;
