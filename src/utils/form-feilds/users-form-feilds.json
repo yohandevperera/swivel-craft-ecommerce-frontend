@@ -1,0 +1,34 @@
+[
+  {
+    "id": "firstname",
+    "name": "firstname",
+    "label": "First name",
+    "type": "text",
+    "required": true,
+    "validate": true
+  },
+  {
+    "id": "email",
+    "name": "email",
+    "label": "Email",
+    "type": "text",
+    "required": true,
+    "validate": true
+  },
+  {
+    "id": "phone",
+    "name": "phone",
+    "label": "Phone",
+    "type": "text",
+    "required": true,
+    "validate": true
+  },
+  {
+    "id": "password",
+    "name": "password",
+    "label": "Password",
+    "type": "text",
+    "required": true,
+    "validate": true
+  }
+]

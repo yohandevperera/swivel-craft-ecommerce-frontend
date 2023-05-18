@@ -68,5 +68,13 @@ export async function deleteCraftCategory(id: string) {
  * @param id @typedef string
  */
 export async function getCraftCategory(id?: string) {
-  return invoke(`api/craft-categories/${id}`, "get", {});
+  return invoke(`api/craft-categories/get-craft-category/${id}`, "get", {});
+}
+
+export async function searchCraftCategoryByName(name?: string) {
+  return invoke(`api/craft-categories/find-by-name/${name}`, "get", {});
+}
+
+export async function getCraftCategoriesByName() {
+  return invoke(`api/craft-categories/get-category-by-name`, "get", {});
 }

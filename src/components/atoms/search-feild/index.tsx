@@ -56,7 +56,7 @@ const SearchFeild: React.FC<SearchFeildProps> = (props) => {
             freeSolo
             id={props.id}
             disableClearable={props.disableClearable}
-            options={props.optionsData.map((data: any) => data.firstname)}
+            options={props.optionsData}
             onChange={props.searchOnChange}
             style={props.style}
             size={"small"}

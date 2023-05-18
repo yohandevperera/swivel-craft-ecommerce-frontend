@@ -1,16 +1,16 @@
 import { Dispatch } from "redux";
 import actions from "../reducers/crud-operations-reducer/crud-operations-actions";
 import {
-  CraftType,
-  createCraft,
-  deleteCraft,
-  editCraft,
-  getAllCrafts,
-  getCraft,
-  searchCraftByName,
-} from "../../services/crafts";
+  CraftCategoryType,
+  createCraftCategory,
+  deleteCraftCategory,
+  editCraftCategory,
+  getAllCraftCategories,
+  getCraftCategoriesByName,
+  getCraftCategory,
+  searchCraftCategoryByName,
+} from "../../services/craft-categories";
 import _ from "lodash";
-import { getCraftCategory } from "../../services/craft-categories";
 
 /**
  * Usage - This file will be used to communcate with the API services via redux.
@@ -24,29 +24,14 @@ import { getCraftCategory } from "../../services/craft-categories";
  *
  * @param dispatch @typedef Dispatch
  */
-export const loadAllCrafts = () => async (dispatch: Dispatch) => {
+export const loadAllCraftsCategories = () => async (dispatch: Dispatch) => {
   try {
     dispatch(actions.loadStart());
-    const response = await getAllCrafts();
+    const response = await getAllCraftCategories();
     if (_.isEmpty(response.data) || _.isNull(response.data.data)) {
-      throw Error("error loading all crafts response null");
+      throw Error("error loading all craft categories response null");
     }
-    const crafts: any[] = response.data.data;
-    const restructuredCrafts = await Promise.all(
-      crafts.map(async (craft: CraftType) => {
-        const craftCategory = await getCraftCategory(craft.categoryId);
-        return {
-          name: craft.name,
-          craftCategory: craftCategory?.data?.data?.name,
-          description: craft.description,
-          price: craft.price,
-          qty: craft.qty,
-          photo: craft.photo,
-          _id: craft._id,
-        };
-      })
-    );
-    dispatch(actions.loadSuccess(restructuredCrafts));
+    dispatch(actions.loadSuccess(response.data.data));
   } catch (error: any) {
     dispatch(actions.loadError(error.message));
     throw Error(error.message);
@@ -60,16 +45,15 @@ export const loadAllCrafts = () => async (dispatch: Dispatch) => {
  * @param dispatch @typedef Dispatch
  * @param crafts @typedef Omit<CraftType, "_id">
  */
-export const createCrafts =
-  (craft: Omit<CraftType, "_id">) => (dispatch: Dispatch) => {
+export const createCraftCategories =
+  (craftCategory: Omit<CraftCategoryType, "_id">) => (dispatch: Dispatch) => {
     dispatch(actions.loadStart());
-    createCraft(craft)
+    createCraftCategory(craftCategory)
       .then((response) => {
         if (_.isEmpty(response) || _.isNull(response)) {
-          throw Error("Error creating craft response null");
+          throw Error("Error creating craft category response null");
         }
         const createdResponse = response.data;
-        console.log(createdResponse);
         dispatch(actions.loadSuccess(createdResponse));
       })
       .catch((error) => {
@@ -86,13 +70,14 @@ export const createCrafts =
  * @param craft @typedef Omit<CraftType, "_id">
  * @param craftId @typedef string
  */
-export const editCrafts =
-  (craft: Omit<CraftType, "_id">, craftId: string) => (dispatch: Dispatch) => {
+export const editCraftCategories =
+  (craftCategory: Omit<CraftCategoryType, "_id">, craftCategoryId: string) =>
+  (dispatch: Dispatch) => {
     dispatch(actions.loadStart());
-    editCraft(craft, craftId)
+    editCraftCategory(craftCategory, craftCategoryId)
       .then((response) => {
         if (_.isEmpty(response) || _.isNull(response)) {
-          throw Error("Error editing craft response null");
+          throw Error("Error editing craft category response null");
         }
         const createdResponse = response.data;
         dispatch(actions.singleLoadSuccess(createdResponse));
@@ -110,12 +95,12 @@ export const editCrafts =
  * @param dispatch @typedef Dispatch
  * @param id @typedef string
  */
-export const removecraft = (id: string) => (dispatch: Dispatch) => {
+export const removeCraftCategory = (id: string) => (dispatch: Dispatch) => {
   dispatch(actions.loadStart());
-  deleteCraft(id)
+  deleteCraftCategory(id)
     .then((response) => {
       if (_.isEmpty(response) || _.isNull(response)) {
-        throw Error("Error removing craft response null");
+        throw Error("Error removing craft category response null");
       }
       const deletedResponse = response.data;
       dispatch(actions.singleLoadSuccess(deletedResponse));
@@ -135,7 +120,7 @@ export const removecraft = (id: string) => (dispatch: Dispatch) => {
  */
 export const getSinglecraft = (id?: string) => (dispatch: Dispatch) => {
   dispatch(actions.loadStart());
-  getCraft(id)
+  getCraftCategory(id)
     .then((response) => {
       if (_.isEmpty(response) || _.isNull(response)) {
         throw Error("error get single craft response null");
@@ -158,30 +143,30 @@ export const getSinglecraft = (id?: string) => (dispatch: Dispatch) => {
  */
 export const searchCrafts = (name: string) => (dispatch: Dispatch) => {
   dispatch(actions.loadStart());
-  searchCraftByName(name)
+  searchCraftCategoryByName(name)
     .then(async (response) => {
       if (_.isEmpty(response) || _.isNull(response)) {
         throw Error("search Crafts response null");
       }
-      const crafts: any[] = response.data.data;
-      const restructuredCrafts = await Promise.all(
-        crafts.map(async (craft: CraftType) => {
-          const craftCategory = await getCraftCategory(craft.categoryId);
-          return {
-            name: craft.name,
-            craftCategory: craftCategory?.data?.data?.name,
-            description: craft.description,
-            price: craft.price,
-            qty: craft.qty,
-            photo: craft.photo,
-            _id: craft._id,
-          };
-        })
-      );
-      dispatch(actions.loadSuccess(restructuredCrafts));
+      const craftCategories: any[] = response.data.data;
+      dispatch(actions.loadSuccess(craftCategories));
     })
     .catch((error) => {
       dispatch(actions.loadError(error.message));
       throw Error(error.message);
     });
+};
+
+export const loadAllCraftsCategoryNames = () => async (dispatch: Dispatch) => {
+  try {
+    dispatch(actions.loadStart());
+    const response = await getCraftCategoriesByName();
+    if (_.isEmpty(response.data) || _.isNull(response.data.data)) {
+      throw Error("error loading all craft category names response null");
+    }
+    dispatch(actions.loadSuccess(response.data.data));
+  } catch (error: any) {
+    dispatch(actions.loadError(error.message));
+    throw Error(error.message);
+  }
 };

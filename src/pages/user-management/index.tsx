@@ -1,20 +1,20 @@
 import { FormikHelpers } from "formik";
 import FormContainer from "../../components/templates/form-container";
-import craftfeildData from "../../utils/form-feilds/crafts-form-feilds.json";
+import userfeildData from "../../utils/form-feilds/users-form-feilds.json";
 import { useSelector } from "react-redux";
 import { validationSchema } from "../../validations/form-validations";
 import { useDispatch } from "react-redux";
 import {
-  createCrafts,
-  loadAllCrafts,
-  removecraft,
-  searchCrafts,
-} from "../../redux/thunks/crafts-thunk";
+  createUsers,
+  loadAllUsers,
+  searchUsers,
+  removeUser,
+} from "../../redux/thunks/users-thunk";
 import _ from "lodash";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
 import { useEffect, useState } from "react";
-import { getAllCrafts } from "../../services/crafts";
+import { getAllUsers } from "../../services/users";
 
 /**
  * Usage - This component will directly call the PageHelmet, Header and CraftDataView components.
@@ -23,48 +23,39 @@ import { getAllCrafts } from "../../services/crafts";
  *
  */
 
-const CraftManagement: React.FC = () => {
+const UserManagement: React.FC = () => {
   const dispatch = useDispatch();
 
-  const { imageUploader, crudOperations } = useSelector((state: any) => state);
+  const { crudOperations } = useSelector((state: any) => state);
   const [searchValue, setSearchValue] = useState<any>("");
-  const [craftsList, setCraftsList] = useState<any[]>([]);
+  const [usersList, setUsersList] = useState<any[]>([]);
 
   const initialValues = {
-    name: "",
-    categoryId: "",
-    description: "",
-    qty: "",
-    price: "",
+    firstname: "",
+    email: "",
+    phone: "",
+    password: "",
   };
 
   const onFormSubmit = async (values: any, helpers: FormikHelpers<any>) => {
-    if (_.isEmpty(imageUploader.imageBase64)) {
-      toast.error("Image not uploaded", { position: "bottom-right" });
-    }
-    values = {
-      ...values,
-      photo: imageUploader.imageBase64,
-    };
-    dispatch(createCrafts(values) as any);
+    console.log(values);
+    dispatch(createUsers(values) as any);
   };
 
   useEffect(() => {
-    dispatch(loadAllCrafts() as any);
+    dispatch(loadAllUsers() as any);
   }, [dispatch]);
 
   useEffect(() => {
-    getAllCrafts()
+    getAllUsers()
       .then((response) => {
         if (_.has(response, "data.data")) {
-          const crafts: any[] = response.data.data;
-          const optionCrafts = crafts.map((craft) => ({
-            value: craft._id,
-            label: craft.name,
+          const users: any[] = response.data.data;
+          const optionUsers = users.map((user) => ({
+            value: user._id,
+            label: user.name,
           }));
-          _.isEmpty(optionCrafts)
-            ? setCraftsList([])
-            : setCraftsList(optionCrafts);
+          _.isEmpty(optionUsers) ? setUsersList([]) : setUsersList(optionUsers);
         }
       })
       .catch((error: any) => {
@@ -74,7 +65,7 @@ const CraftManagement: React.FC = () => {
 
   const handleDelete = (id: string) => {
     if (!_.isEmpty(id) && !_.isUndefined(id)) {
-      dispatch(removecraft(id) as any);
+      dispatch(removeUser(id) as any);
     }
     if (
       _.has(crudOperations, "dataSet.message") &&
@@ -99,9 +90,9 @@ const CraftManagement: React.FC = () => {
 
   const handleOnSearchClick = () => {
     if (_.isUndefined(searchValue) || _.isEmpty(searchValue)) {
-      dispatch(loadAllCrafts() as any);
+      dispatch(loadAllUsers() as any);
     } else {
-      dispatch(searchCrafts(searchValue.label) as any);
+      dispatch(searchUsers(searchValue.label) as any);
     }
   };
 
@@ -109,36 +100,28 @@ const CraftManagement: React.FC = () => {
     <>
       <ToastContainer />
       <FormContainer
-        addButtonText="Add Craft"
-        navBarTitleText="Crafts Management"
-        formFeildData={craftfeildData}
+        addButtonText="Add User"
+        navBarTitleText="Users Management"
+        formFeildData={userfeildData}
         formIntialValues={initialValues}
         formValidationSchema={validationSchema}
         handleDelete={handleDelete}
         onFormSubmit={onFormSubmit}
-        onSearchRefresh={() => dispatch(loadAllCrafts() as any)}
+        onSearchRefresh={() => dispatch(loadAllUsers() as any)}
         searchOnClick={handleOnSearchClick}
-        searchOptionData={craftsList}
+        searchOptionData={usersList}
         searchValue={searchValue}
         tableData={crudOperations.dataSet}
         searchOnChange={(
           event: React.SyntheticEvent<Element, Event>,
           value: string
         ) => setSearchValue(value)}
-        tableHeadings={[
-          "Name",
-          "Category Name",
-          "Description",
-          "Price",
-          "Qty",
-          "Photo",
-          "Actions",
-        ]}
-        titleKey="Craft"
+        tableHeadings={["First name", "Email", "Phone", "User Role"]}
+        titleKey="User"
         formType="add"
       />
     </>
   );
 };
 
-export default CraftManagement;
+export default UserManagement;
