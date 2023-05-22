@@ -20,6 +20,11 @@ export interface UserType {
   password: number;
 }
 
+export interface AuthType {
+  email: string;
+  password: string;
+}
+
 /**
  * Description and Usage - This function will be used
  * to fetch all the crafts from the backend API endpoint
@@ -71,4 +76,8 @@ export async function getUser(id?: string) {
 
 export async function searchUserByFristname(name?: string) {
   return invoke(`api/users/find-by-name/${name}`, "get", {});
+}
+
+export async function validateUser(loginParams?: AuthType) {
+  return invoke(`api/users/login`, "post", loginParams);
 }

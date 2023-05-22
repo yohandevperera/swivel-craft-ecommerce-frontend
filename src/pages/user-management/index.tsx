@@ -1,4 +1,4 @@
-import { FormikHelpers } from "formik";
+import { FormikHelpers, FormikProps } from "formik";
 import FormContainer from "../../components/templates/form-container";
 import userfeildData from "../../utils/form-feilds/users-form-feilds.json";
 import { useSelector } from "react-redux";
@@ -9,12 +9,13 @@ import {
   loadAllUsers,
   searchUsers,
   removeUser,
+  editUsers,
 } from "../../redux/thunks/users-thunk";
 import _ from "lodash";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
-import { useEffect, useState } from "react";
-import { getAllUsers } from "../../services/users";
+import { useEffect, useRef, useState } from "react";
+import { getAllUsers, getUser } from "../../services/users";
 
 /**
  * Usage - This component will directly call the PageHelmet, Header and CraftDataView components.
@@ -29,6 +30,9 @@ const UserManagement: React.FC = () => {
   const { crudOperations } = useSelector((state: any) => state);
   const [searchValue, setSearchValue] = useState<any>("");
   const [usersList, setUsersList] = useState<any[]>([]);
+  const [openAddFormDialog, setOpenAddFormDialog] = useState<boolean>(false);
+  const [userId, setUserId] = useState<string>("");
+  const formRef = useRef<FormikProps<any>>(null);
 
   const initialValues = {
     firstname: "",
@@ -40,7 +44,45 @@ const UserManagement: React.FC = () => {
   const onFormSubmit = async (values: any, helpers: FormikHelpers<any>) => {
     console.log(values);
     dispatch(createUsers(values) as any);
+
+    if (!_.isEmpty(userId) && !_.isUndefined(userId)) {
+      dispatch(editUsers(values, userId) as any);
+      if (
+        _.has(crudOperations, "errorMessage") &&
+        !_.isEmpty(crudOperations.errorMessage)
+      ) {
+        toast.error(crudOperations.errorMessage, {
+          position: "bottom-right",
+        });
+      }
+
+      if (
+        _.has(crudOperations, "dataSet.message") &&
+        !_.isEmpty(crudOperations.dataSet)
+      ) {
+        const createdResponse = crudOperations.dataSet;
+        toast.success(createdResponse.message, { position: "bottom-right" });
+      }
+    }
   };
+
+  useEffect(() => {
+    if (!_.isEmpty(userId) || !_.isUndefined(userId)) {
+      getUser(userId).then((response) => {
+        let data = response.data.data;
+        const feildNames = Object.keys(data || {});
+        if (!_.isEmpty(feildNames)) {
+          feildNames.map((feildName: string) => {
+            data = {
+              ...data,
+              phone: Number(data["phone"]),
+            };
+            formRef.current?.setFieldValue(feildName, data[feildName], false);
+          });
+        }
+      });
+    }
+  }, [userId]);
 
   useEffect(() => {
     dispatch(loadAllUsers() as any);
@@ -96,6 +138,11 @@ const UserManagement: React.FC = () => {
     }
   };
 
+  const handleOpenEdit = (id: string) => {
+    !_.isEmpty(id) || !_.isUndefined(id) ? setUserId(id) : setUserId("");
+    setOpenAddFormDialog(true);
+  };
+
   return (
     <>
       <ToastContainer />
@@ -116,9 +163,13 @@ const UserManagement: React.FC = () => {
           event: React.SyntheticEvent<Element, Event>,
           value: string
         ) => setSearchValue(value)}
-        tableHeadings={["First name", "Email", "Phone", "User Role"]}
+        tableHeadings={["First name", "Email", "Phone"]}
         titleKey="User"
-        formType="add"
+        formType={_.isEmpty(userId) || _.isUndefined(userId) ? "add" : "edit"}
+        handleOpenEdit={handleOpenEdit}
+        setOpenAddFormDialog={setOpenAddFormDialog}
+        openAddFormDialog={openAddFormDialog}
+        formRef={formRef}
       />
     </>
   );

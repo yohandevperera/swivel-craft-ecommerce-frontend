@@ -1,5 +1,9 @@
 import { Route, Routes } from "react-router-dom";
 import Home from "../../../pages/home";
+import UserManagement from "../../../pages/user-management";
+import CraftManagement from "../../../pages/crafts-management";
+import CraftCategoryManagement from "../../../pages/craft-category-management";
+import Login from "../../../pages/login";
 
 /**
  * Usage - This component is used as a wrapper to wrap all the routes that are used in the frontend.
@@ -13,6 +17,13 @@ const AppRoutes: React.FC = () => {
     <>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/admin/user-management" element={<UserManagement />} />
+        <Route path="/admin/craft-management/" element={<CraftManagement />} />
+        <Route path="/login" element={<Login />} />
+        <Route
+          path="/admin/craft-category-management/"
+          element={<CraftCategoryManagement />}
+        />
         <Route />
       </Routes>
     </>

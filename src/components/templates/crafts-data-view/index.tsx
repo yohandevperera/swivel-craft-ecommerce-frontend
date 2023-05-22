@@ -5,6 +5,7 @@ import CraftGrid from "../../organisms/crafts-grid";
 import CircularProgress from "@mui/material/CircularProgress";
 import _ from "lodash";
 import "react-toastify/dist/ReactToastify.min.css";
+import { loadAllCrafts } from "../../../redux/thunks/crafts-thunk";
 // import { loadAllCrafts } from "../../../redux/reducers/crafts/crafts-thunks";
 
 /**
@@ -16,18 +17,18 @@ import "react-toastify/dist/ReactToastify.min.css";
 
 const CraftDataView: React.FC = () => {
   const dispatch = useDispatch();
-  const craftData = useSelector((state: any) => state.crafts);
+  const { crudOperations } = useSelector((state: any) => state);
 
   useEffect(() => {
-    // dispatch(loadAllCrafts() as any);
+    dispatch(loadAllCrafts() as any);
   }, [dispatch]);
 
   return (
     <Container maxWidth="lg">
       <Card sx={{ p: 10, mb: 10, marginTop: 2, position: "relative" }}>
-        {craftData.isLoading ||
-        _.isEmpty(craftData.crafts) ||
-        _.isNull(craftData.crafts) ? (
+        {crudOperations.isLoading ||
+        _.isEmpty(crudOperations.dataSet) ||
+        _.isNull(crudOperations.dataSet) ? (
           <CircularProgress
             style={{
               marginLeft: "50%",
@@ -37,7 +38,7 @@ const CraftDataView: React.FC = () => {
         ) : (
           <>
             <CraftGrid
-              gridData={craftData.crafts}
+              gridData={crudOperations.dataSet}
               gridDir={"row"}
               handleAddToCart={() => {}}
             />

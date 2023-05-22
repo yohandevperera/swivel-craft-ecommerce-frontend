@@ -1,6 +1,6 @@
 import Header from "../../components/atoms/header";
 import PageHelmet from "../../components/atoms/helmet";
-import UserManagement from "../user-management";
+import CraftDataView from "../../components/templates/crafts-data-view";
 
 /**
  * Usage - This component will directly call the PageHelmet, Header and CraftDataView components.
@@ -13,8 +13,7 @@ const Home: React.FC = () => (
   <>
     <PageHelmet />
     <Header title="Craft Manager" />
-    <UserManagement />
-    {/* <CraftDataView /> */}
+    <CraftDataView />
   </>
 );
 

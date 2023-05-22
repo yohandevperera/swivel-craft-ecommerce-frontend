@@ -46,11 +46,12 @@ interface FormContainerProps {
   addButtonText: string;
   navBarTitleText: string;
   titleKey: string;
+  handleOpenEdit: (id: string) => void;
+  setOpenAddFormDialog: React.Dispatch<React.SetStateAction<boolean>>;
+  openAddFormDialog: boolean;
 }
 
 const FormContainer: React.FC<FormContainerProps> = (props) => {
-  const [openAddFormDialog, setOpenAddFormDialog] = useState<boolean>(false);
-
   return (
     <>
       <Sidebar
@@ -66,18 +67,19 @@ const FormContainer: React.FC<FormContainerProps> = (props) => {
           searchValue={props.searchValue}
           addButtonText={props.addButtonText}
           navBarTitleText={props.navBarTitleText}
-          addButtonOnClick={() => setOpenAddFormDialog(true)}
+          addButtonOnClick={() => props.setOpenAddFormDialog(true)}
         />
         <DataTable
           tableHeadings={props.tableHeadings}
           handleDelete={props.handleDelete}
           tableData={props.tableData}
+          handleOpenEdit={props.handleOpenEdit}
         />
       </div>
 
       <Dialog
-        open={openAddFormDialog}
-        onClose={() => setOpenAddFormDialog(false)}
+        open={props.openAddFormDialog}
+        onClose={() => props.setOpenAddFormDialog(false)}
       >
         <DialogTitle>
           {props.formType === "add"
@@ -101,7 +103,7 @@ const FormContainer: React.FC<FormContainerProps> = (props) => {
                   ? `Add ${props.titleKey}`
                   : `Edit ${props.titleKey}`}
               </Button>
-              <Button onClick={() => setOpenAddFormDialog(false)}>
+              <Button onClick={() => props.setOpenAddFormDialog(false)}>
                 Cancel
               </Button>
             </DialogActions>

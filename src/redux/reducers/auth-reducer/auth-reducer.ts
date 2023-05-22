@@ -1,5 +1,5 @@
-import actionTypes from "./crud-operations-actionTypes";
-import initialState from "./crud-operations-intialStates";
+import actionTypes from "./auth-actionTypes";
+import initialState from "./auth-intialStates";
 
 /**
  * Usage - This file will manipulate the defined global redux states.
@@ -15,40 +15,29 @@ import initialState from "./crud-operations-intialStates";
  * @param state @typedef object
  * @param action @typedef any
  */
-const crudOperationsReducer = (state = initialState, action: any) => {
+const authReducer = (state = initialState, action: any) => {
   const { type, payload } = action;
   switch (type) {
-    case actionTypes.LOAD_START:
+    case actionTypes.AUTH_LOAD_START:
       return {
         ...state,
         isLoading: true,
-        dataSet: null,
+        authData: null,
         errorMessage: null,
-        data: null,
       };
-    case actionTypes.LOAD_SUCCESS:
+    case actionTypes.AUTH_LOAD_SUCCESS:
       return {
         ...state,
         isLoading: false,
-        dataSet: payload,
+        authData: payload,
         errorMessage: null,
-        data: null,
       };
-    case actionTypes.SINGLE_LOAD_SUCCESS:
+    case actionTypes.AUTH_LOAD_ERROR:
       return {
         ...state,
         isLoading: false,
-        dataSet: null,
-        errorMessage: null,
-        data: payload,
-      };
-    case actionTypes.LOAD_ERROR:
-      return {
-        ...state,
-        isLoading: false,
-        dataSet: null,
+        authData: null,
         errorMessage: payload,
-        data: null,
       };
 
     default:
@@ -56,4 +45,4 @@ const crudOperationsReducer = (state = initialState, action: any) => {
   }
 };
 
-export default crudOperationsReducer;
+export default authReducer;

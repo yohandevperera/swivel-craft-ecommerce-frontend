@@ -1,5 +1,7 @@
 import { styled } from "@mui/material/styles";
-import { Card } from "@mui/material";
+import { Button, Card } from "@mui/material";
+import Grid from "@mui/material/Grid";
+import { NavLink as RouterLink } from "react-router-dom";
 
 /**
  * Usage - This component can be used as a
@@ -27,7 +29,20 @@ const Header: React.FC<{ title: string }> = (props) => {
         marginTop: 1,
       }}
     >
-      <Div>{props.title}</Div>
+      <Grid container spacing={2}>
+        <Grid item xs={6} md={11}>
+          <Div>{props.title}</Div>
+        </Grid>
+        <Grid item xs={6} md={1} style={{ marginTop: 6, float: "right" }}>
+          <Button
+            component={RouterLink}
+            to={`/login`}
+            variant="contained"
+          >
+            Login
+          </Button>
+        </Grid>
+      </Grid>
     </Card>
   );
 };

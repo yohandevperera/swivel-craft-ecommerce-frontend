@@ -8,17 +8,17 @@ export const NavItems: NavBarItemType[] = [
   {
     name: "Craft Categories Management",
     icon: <CategoryIcon />,
-    ridirectRoute: "",
+    ridirectRoute: "/admin/craft-category-management/",
   },
   {
     name: "Craft Management",
     icon: <DesignServicesIcon />,
-    ridirectRoute: "",
+    ridirectRoute: "/admin/craft-management/",
   },
   {
     name: "User Management",
     icon: <PeopleAltIcon />,
-    ridirectRoute: "",
+    ridirectRoute: "/admin/user-management",
   },
   {
     name: "Order Management",

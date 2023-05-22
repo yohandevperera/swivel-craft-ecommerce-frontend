@@ -1,6 +1,8 @@
 import { Dispatch } from "redux";
 import actions from "../reducers/crud-operations-reducer/crud-operations-actions";
+import authActions from "../reducers/auth-reducer/auth-actions";
 import {
+  AuthType,
   UserType,
   createUser,
   deleteUser,
@@ -8,6 +10,7 @@ import {
   getAllUsers,
   getUser,
   searchUserByFristname,
+  validateUser,
 } from "../../services/users";
 import _ from "lodash";
 
@@ -27,6 +30,7 @@ export const loadAllUsers = () => async (dispatch: Dispatch) => {
   try {
     dispatch(actions.loadStart());
     const response = await getAllUsers();
+    console.log(response);
     if (_.isEmpty(response.data) || _.isNull(response.data.data)) {
       throw Error("error loading all Users response null");
     }
@@ -153,6 +157,29 @@ export const searchUsers = (name: string) => (dispatch: Dispatch) => {
     })
     .catch((error) => {
       dispatch(actions.loadError(error.message));
+      throw Error(error.message);
+    });
+};
+
+/**
+ * Description and Usage - This function that will be used to fetch
+ * a single user for a given user id
+ *
+ * @param dispatch @typedef Dispatch
+ * @param id @typedef string
+ */
+export const login = (loginParams: AuthType) => (dispatch: Dispatch) => {
+  dispatch(authActions.authLoadStart());
+  validateUser(loginParams)
+    .then((response) => {
+      if (_.isEmpty(response) || _.isNull(response)) {
+        throw Error("error loggin in auth response null");
+      }
+      const loggedInUser = response.data;
+      dispatch(authActions.authLoadSuccess(loggedInUser));
+    })
+    .catch((error) => {
+      dispatch(authActions.authLoadError(error.message));
       throw Error(error.message);
     });
 };

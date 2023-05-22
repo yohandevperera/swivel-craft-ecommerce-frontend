@@ -29,6 +29,7 @@ const DataTable: React.FC<{
   tableData: any[];
   tableHeadings: string[];
   handleDelete: (id: string) => void;
+  handleOpenEdit: (id: string) => void;
 }> = (props) => {
   const [deleteDialogVisiblity, setDeleteDialogVisiblity] =
     useState<boolean>(false);
@@ -95,8 +96,7 @@ const DataTable: React.FC<{
                     <Stack direction="row" alignItems="end" spacing={2}>
                       <Button
                         disableRipple
-                        component={RouterLink}
-                        to={`/employee-edit/${row._id}`}
+                        onClick={() => props.handleOpenEdit(row._id)}
                       >
                         Edit
                       </Button>
