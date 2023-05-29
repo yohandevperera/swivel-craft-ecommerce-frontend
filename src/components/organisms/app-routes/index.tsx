@@ -4,6 +4,7 @@ import UserManagement from "../../../pages/user-management";
 import CraftManagement from "../../../pages/crafts-management";
 import CraftCategoryManagement from "../../../pages/craft-category-management";
 import Login from "../../../pages/login";
+import Checkout from "../../../pages/checkout";
 
 /**
  * Usage - This component is used as a wrapper to wrap all the routes that are used in the frontend.
@@ -20,6 +21,7 @@ const AppRoutes: React.FC = () => {
         <Route path="/admin/user-management" element={<UserManagement />} />
         <Route path="/admin/craft-management/" element={<CraftManagement />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/checkout" element={<Checkout />} />
         <Route
           path="/admin/craft-category-management/"
           element={<CraftCategoryManagement />}
