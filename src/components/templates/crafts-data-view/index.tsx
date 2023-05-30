@@ -1,13 +1,13 @@
 import { Container, Card } from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import CraftGrid from "../../organisms/crafts-grid";
 import CircularProgress from "@mui/material/CircularProgress";
 import _ from "lodash";
 import "react-toastify/dist/ReactToastify.min.css";
 import { loadAllCrafts } from "../../../redux/thunks/crafts-thunk";
-// import { loadAllCrafts } from "../../../redux/reducers/crafts/crafts-thunks";
-
+import { connect } from "react-redux";
+import reduxActions from "../../../redux/reducers/cart-reducer/cart-actions";
 /**
  * Usage - This component is used for to manipulate the craft data view.
  *
@@ -15,7 +15,7 @@ import { loadAllCrafts } from "../../../redux/thunks/crafts-thunk";
  *
  */
 
-const CraftDataView: React.FC = () => {
+const CraftDataView: React.FC<any> = (props) => {
   const dispatch = useDispatch();
   const { crudOperations } = useSelector((state: any) => state);
 
@@ -40,7 +40,7 @@ const CraftDataView: React.FC = () => {
             <CraftGrid
               gridData={crudOperations.dataSet}
               gridDir={"row"}
-              handleAddToCart={() => {}}
+              handleAddToCart={(itemId: string) => props.addToCart(itemId)}
             />
           </>
         )}
@@ -49,4 +49,10 @@ const CraftDataView: React.FC = () => {
   );
 };
 
-export default CraftDataView;
+const mapDispatchToProps = (dispatch: any) => {
+  return {
+    addToCart: (id: string) => dispatch(reduxActions.addToCart(id)),
+  };
+};
+
+export default connect(null, mapDispatchToProps)(CraftDataView);

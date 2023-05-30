@@ -35,9 +35,17 @@ const loadCurrentItem = (item: any) => {
   };
 };
 
+const loadItems = (items: any[]) => {
+  return {
+    type: actionTypes.LOAD_ITEMS,
+    payload: items,
+  };
+};
+
 export default {
   addToCart,
   removeFromCart,
   adjustQty,
   loadCurrentItem,
+  loadItems,
 };

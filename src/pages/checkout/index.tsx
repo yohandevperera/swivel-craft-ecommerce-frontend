@@ -8,28 +8,6 @@ import CartItem from "../../components/atoms/cart-item";
 import { connect } from "react-redux";
 
 const Checkout: React.FC<any> = (props) => {
-  console.log(props.items);
-
-  const cartItems: CartItemProps[] = [
-    {
-      imageSrc: "",
-      itemName: "Test",
-      price: 1000,
-      qty: 10,
-    },
-    {
-      imageSrc: "",
-      itemName: "Test 1",
-      price: 1000,
-      qty: 10,
-    },
-    {
-      imageSrc: "",
-      itemName: "Test 2",
-      price: 1000,
-      qty: 10,
-    },
-  ];
 
   const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -48,11 +26,11 @@ const Checkout: React.FC<any> = (props) => {
             <List
               sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}
             >
-              {_.isEmpty(cartItems) || _.isUndefined(cartItems) ? (
+              {_.isEmpty(props.cart) || _.isUndefined(props.cart) ? (
                 <CircularProgress />
               ) : (
-                cartItems.map((item: CartItemProps, index: number) => (
-                  <CartItem key={index} {...item} />
+                props.cart.map((cartItem: CartItemProps) => (
+                  <CartItem {...cartItem} />
                 ))
               )}
             </List>
@@ -68,7 +46,7 @@ const Checkout: React.FC<any> = (props) => {
 
 const mapStateToProps = (state: any) => {
   return {
-    items: state.cart.items,
+    cart: state.cart.cart,
   };
 };
 

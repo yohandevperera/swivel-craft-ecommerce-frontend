@@ -11,6 +11,7 @@ import {
 } from "../../services/crafts";
 import _ from "lodash";
 import { getCraftCategory } from "../../services/craft-categories";
+import cartActions from "../reducers/cart-reducer/cart-actions";
 
 /**
  * Usage - This file will be used to communcate with the API services via redux.
@@ -47,6 +48,7 @@ export const loadAllCrafts = () => async (dispatch: Dispatch) => {
       })
     );
     dispatch(actions.loadSuccess(restructuredCrafts));
+    dispatch(cartActions.loadItems(restructuredCrafts));
   } catch (error: any) {
     dispatch(actions.loadError(error.message));
     throw Error(error.message);

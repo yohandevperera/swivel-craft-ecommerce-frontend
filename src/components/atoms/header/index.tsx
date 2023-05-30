@@ -2,6 +2,8 @@ import { styled } from "@mui/material/styles";
 import { Button, Card } from "@mui/material";
 import Grid from "@mui/material/Grid";
 import { NavLink as RouterLink } from "react-router-dom";
+import { connect } from "react-redux";
+import { useEffect, useState } from "react";
 
 /**
  * Usage - This component can be used as a
@@ -20,7 +22,17 @@ const Div = styled("div")(({ theme }) => ({
   color: "white",
 }));
 
-const Header: React.FC<{ title: string }> = (props) => {
+const Header: React.FC<{ title: string; cart: any }> = (props) => {
+  const [cartCount, setCartCount] = useState<number>(0);
+
+  useEffect(() => {
+    let count = 0;
+    props.cart.forEach((item: any) => {
+      count += item.qty;
+    });
+    setCartCount(count);
+  }, [props.cart, cartCount]);
+
   return (
     <Card
       sx={{
@@ -30,7 +42,7 @@ const Header: React.FC<{ title: string }> = (props) => {
       }}
     >
       <Grid container spacing={2}>
-        <Grid item xs={6} md={10.5}>
+        <Grid item xs={6} md={9.8}>
           <Div>{props.title}</Div>
         </Grid>
         <Grid item xs={6} md={1} style={{ marginTop: 6, float: "right" }}>
@@ -40,9 +52,14 @@ const Header: React.FC<{ title: string }> = (props) => {
                 Login
               </Button>
             </Grid>
-            <Grid item xs={4}>
-              <Button component={RouterLink} to={`/login`} variant="contained" >
-                Cart
+            <Grid item xs={2}>
+              <Button
+                component={RouterLink}
+                to={`/checkout`}
+                variant="contained"
+                sx={{ width: 100 }}
+              >
+                {`Cart   ${cartCount}`}
               </Button>
             </Grid>
           </Grid>
@@ -52,4 +69,10 @@ const Header: React.FC<{ title: string }> = (props) => {
   );
 };
 
-export default Header;
+const mapStateToProps = (state: any) => {
+  return {
+    cart: state.cart.cart,
+  };
+};
+
+export default connect(mapStateToProps)(Header);

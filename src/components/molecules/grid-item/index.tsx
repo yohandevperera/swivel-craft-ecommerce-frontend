@@ -19,7 +19,7 @@ import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 
 const GridItem: React.FC<{
   item: CraftType;
-  handleAddToCart: (craftId: string) => void;
+  handleAddToCart: (itemId: string) => void;
 }> = (props) => {
   return (
     <Paper
@@ -78,7 +78,7 @@ const GridItem: React.FC<{
                   divStyle={{}}
                   icon={<AddShoppingCartIcon />}
                   isButtonDisabled={true}
-                  divOnClick={() => {}}
+                  divOnClick={(event) => props.handleAddToCart(props.item._id)}
                 />
               </Stack>
             </Grid>

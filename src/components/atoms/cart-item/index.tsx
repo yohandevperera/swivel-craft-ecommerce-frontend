@@ -8,9 +8,10 @@ import {
 import React from "react";
 
 export interface CartItemProps {
-  imageSrc: string;
-  itemName: string;
+  photo: string;
+  name: string;
   price: number;
+  id?: number;
   qty: number;
 }
 
@@ -19,10 +20,10 @@ const CartItem: React.FC<CartItemProps> = (props) => {
     <>
       <ListItem alignItems="flex-start">
         <ListItemAvatar>
-          <Avatar alt="system couldnt load the image" src={props.imageSrc} />
+          <Avatar alt="system couldnt load the image" src={props.photo} />
         </ListItemAvatar>
         <ListItemText
-          primary={props.itemName}
+          primary={props.name}
           secondary={
             <>
               <Typography

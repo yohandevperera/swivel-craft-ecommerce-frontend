@@ -1,5 +1,5 @@
 import Grid from "@mui/material/Grid";
-import React from "react";
+import React, { useState } from "react";
 import { CraftType } from "../../../services/crafts";
 import GridItem from "../../molecules/grid-item";
 import _ from "lodash";
@@ -17,7 +17,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 const EmployeeGrid: React.FC<{
   gridDir: "column" | "row";
   gridData: CraftType[];
-  handleAddToCart: (craftId: string) => void;
+  handleAddToCart: (itemId: string) => void;
 }> = (props) => {
   return (
     <>
@@ -39,7 +39,10 @@ const EmployeeGrid: React.FC<{
         ) : (
           props.gridData.map((item: CraftType) => (
             <Grid item xs={3}>
-              <GridItem item={item} handleAddToCart={props.handleAddToCart} />
+              <GridItem
+                item={item}
+                handleAddToCart={props.handleAddToCart}
+              />
             </Grid>
           ))
         )}
