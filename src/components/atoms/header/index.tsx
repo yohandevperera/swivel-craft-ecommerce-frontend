@@ -4,6 +4,7 @@ import Grid from "@mui/material/Grid";
 import { NavLink as RouterLink } from "react-router-dom";
 import { connect } from "react-redux";
 import { useEffect, useState } from "react";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 
 /**
  * Usage - This component can be used as a
@@ -57,7 +58,8 @@ const Header: React.FC<{ title: string; cart: any }> = (props) => {
                 component={RouterLink}
                 to={`/checkout`}
                 variant="contained"
-                sx={{ width: 100 }}
+                sx={{ width: 150 }}
+                startIcon={<ShoppingCartIcon />}
               >
                 {`Cart   ${cartCount}`}
               </Button>
