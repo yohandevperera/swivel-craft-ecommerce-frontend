@@ -2,7 +2,7 @@ import { FormikHelpers, FormikProps } from "formik";
 import FormContainer from "../../components/templates/form-container";
 import userfeildData from "../../utils/form-feilds/users-form-feilds.json";
 import { useSelector } from "react-redux";
-import { validationSchema } from "../../validations/form-validations";
+import { toValidateFeilds } from "../../validations/form-validations";
 import { useDispatch } from "react-redux";
 import {
   createUsers,
@@ -16,6 +16,7 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
 import { useEffect, useRef, useState } from "react";
 import { getAllUsers, getUser } from "../../services/users";
+import * as Yup from "yup";
 
 /**
  * Usage - This component will directly call the PageHelmet, Header and CraftDataView components.
@@ -32,6 +33,9 @@ const UserManagement: React.FC = () => {
   const [usersList, setUsersList] = useState<any[]>([]);
   const [openAddFormDialog, setOpenAddFormDialog] = useState<boolean>(false);
   const [userId, setUserId] = useState<string>("");
+  const [validationSchema, setValidationSchema] =
+    useState<Yup.ObjectSchema<{}, Yup.AnyObject, {}, "">>();
+
   const formRef = useRef<FormikProps<any>>(null);
 
   const initialValues = {
@@ -41,10 +45,10 @@ const UserManagement: React.FC = () => {
     password: "",
   };
 
-  const onFormSubmit = async (values: any, helpers: FormikHelpers<any>) => {
-    console.log(values);
-    dispatch(createUsers(values) as any);
+  useEffect(() => setValidationSchema(toValidateFeilds(userfeildData)));
 
+  const onFormSubmit = async (values: any, helpers: FormikHelpers<any>) => {
+    dispatch(createUsers(values, "management") as any);
     if (!_.isEmpty(userId) && !_.isUndefined(userId)) {
       dispatch(editUsers(values, userId) as any);
       if (

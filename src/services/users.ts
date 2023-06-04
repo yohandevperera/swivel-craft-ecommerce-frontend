@@ -18,6 +18,7 @@ export interface UserType {
   email: string;
   phone: string;
   password: number;
+  userRole: "ADMIN" | "USER";
 }
 
 export interface AuthType {

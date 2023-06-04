@@ -28,7 +28,7 @@ export type formFeildType = {
   validate: boolean;
   valuesAndLabels?: any[];
   optionKeys?: {};
-  route: string;
+  route?: string;
 };
 
 const FormFeilds: React.FC<{ feilds: formFeildType[] }> = (props) => {
@@ -48,6 +48,8 @@ const FormFeilds: React.FC<{ feilds: formFeildType[] }> = (props) => {
             return <FormOptionFeild {...feild} optionType="api-option" />;
           case "file":
             return <FormFileUploadFeild {...feild} />;
+          case "password":
+            return <FormFeild {...feild} key={index} />;
           default:
             return <></>;
         }

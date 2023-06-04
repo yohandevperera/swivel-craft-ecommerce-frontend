@@ -34,7 +34,7 @@ interface FormOptionFeildProps {
   valuesAndLabels?: any[];
   optionType: "default" | "api-option";
   optionKeys?: any;
-  route: any;
+  route?: any;
 }
 
 const RenderFormOptionFeildForType: React.FC<FormOptionFeildProps> = (

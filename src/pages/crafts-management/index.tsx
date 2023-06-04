@@ -2,7 +2,7 @@ import { FormikHelpers, FormikProps } from "formik";
 import FormContainer from "../../components/templates/form-container";
 import craftfeildData from "../../utils/form-feilds/crafts-form-feilds.json";
 import { useSelector } from "react-redux";
-import { validationSchema } from "../../validations/form-validations";
+import { toValidateFeilds } from "../../validations/form-validations";
 import { useDispatch } from "react-redux";
 import {
   createCrafts,
@@ -16,6 +16,7 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
 import { useEffect, useRef, useState } from "react";
 import { getAllCrafts, getCraft } from "../../services/crafts";
+import * as Yup from "yup";
 
 /**
  * Usage - This component will directly call the PageHelmet, Header and CraftDataView components.
@@ -32,6 +33,8 @@ const CraftManagement: React.FC = () => {
   const [craftsList, setCraftsList] = useState<any[]>([]);
   const [craftId, setCraftId] = useState<string>("");
   const [openAddFormDialog, setOpenAddFormDialog] = useState<boolean>(false);
+  const [validationSchema, setValidationSchema] =
+    useState<Yup.ObjectSchema<{}, Yup.AnyObject, {}, "">>();
   const formRef = useRef<FormikProps<any>>(null);
 
   const initialValues = {
@@ -41,6 +44,8 @@ const CraftManagement: React.FC = () => {
     qty: "",
     price: "",
   };
+
+  useEffect(() => setValidationSchema(toValidateFeilds(craftfeildData)));
 
   const onFormSubmit = async (values: any, helpers: FormikHelpers<any>) => {
     if (_.isEmpty(imageUploader.imageBase64)) {

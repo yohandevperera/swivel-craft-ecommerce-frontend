@@ -3,7 +3,7 @@ import Home from "../../../pages/home";
 import UserManagement from "../../../pages/user-management";
 import CraftManagement from "../../../pages/crafts-management";
 import CraftCategoryManagement from "../../../pages/craft-category-management";
-import Login from "../../../pages/login";
+import LoginAndSignUp from "../../../pages/login-and-signup";
 import Checkout from "../../../pages/checkout";
 
 /**
@@ -20,7 +20,7 @@ const AppRoutes: React.FC = () => {
         <Route path="/" element={<Home />} />
         <Route path="/admin/user-management" element={<UserManagement />} />
         <Route path="/admin/craft-management/" element={<CraftManagement />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/login" element={<LoginAndSignUp />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route
           path="/admin/craft-category-management/"

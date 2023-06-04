@@ -2,7 +2,7 @@ import { FormikHelpers, FormikProps } from "formik";
 import FormContainer from "../../components/templates/form-container";
 import craftCategoryfeildData from "../../utils/form-feilds/crafts-category-form-feilds.json";
 import { useSelector } from "react-redux";
-import { validationSchema } from "../../validations/form-validations";
+import { toValidateFeilds } from "../../validations/form-validations";
 import { useDispatch } from "react-redux";
 import _ from "lodash";
 import { toast, ToastContainer } from "react-toastify";
@@ -19,6 +19,7 @@ import {
   getAllCraftCategories,
   getCraftCategory,
 } from "../../services/craft-categories";
+import * as Yup from "yup";
 
 /**
  * Usage - This component will directly call the PageHelmet, Header and CraftDataView components.
@@ -35,11 +36,18 @@ const CraftCategoryManagement: React.FC = () => {
   const [craftCategoriesList, setCraftCategoriesList] = useState<any[]>([]);
   const [openAddFormDialog, setOpenAddFormDialog] = useState<boolean>(false);
   const [craftCategoryId, setCraftCategoryId] = useState<string>("");
+  const [validationSchema, setValidationSchema] =
+    useState<Yup.ObjectSchema<{}, Yup.AnyObject, {}, "">>();
+
   const formRef = useRef<FormikProps<any>>(null);
 
   const initialValues = {
     name: "",
   };
+
+  useEffect(() =>
+    setValidationSchema(toValidateFeilds(craftCategoryfeildData))
+  );
 
   const onFormSubmit = async (values: any, helpers: FormikHelpers<any>) => {
     dispatch(createCraftCategories(values) as any);

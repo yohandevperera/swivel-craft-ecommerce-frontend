@@ -50,15 +50,26 @@ export const loadAllUsers = () => async (dispatch: Dispatch) => {
  * @param Users @typedef Omit<UserType, "_id">
  */
 export const createUsers =
-  (user: Omit<UserType, "_id">) => (dispatch: Dispatch) => {
+  (user: Omit<UserType, "_id">, type: "signUp" | "management") =>
+  (dispatch: Dispatch) => {
     dispatch(actions.loadStart());
+    if (type == "signUp") {
+      user = {
+        ...user,
+        userRole: "USER",
+      };
+    } else {
+      user = {
+        ...user,
+        userRole: "ADMIN",
+      };
+    }
     createUser(user)
       .then((response) => {
         if (_.isEmpty(response) || _.isNull(response)) {
           throw Error("Error creating user response null");
         }
         const createdResponse = response.data;
-        console.log(createdResponse);
         dispatch(actions.loadSuccess(createdResponse));
       })
       .catch((error) => {

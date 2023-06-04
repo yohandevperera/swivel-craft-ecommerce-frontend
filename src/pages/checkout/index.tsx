@@ -7,7 +7,7 @@ import {
   Grid,
   Typography,
 } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { styled } from "@mui/material/styles";
 import Paper from "@mui/material/Paper";
 import { CartItemType } from "../../components/atoms/cart-item";
@@ -17,15 +17,57 @@ import { connect } from "react-redux";
 import reduxActions from "../../redux/reducers/cart-reducer/cart-actions";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 
+const Item = styled(Paper)(({ theme }) => ({
+  backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
+  ...theme.typography.body2,
+  padding: theme.spacing(1),
+  textAlign: "center",
+  color: theme.palette.text.secondary,
+  height: "90Vh",
+}));
+
 const Checkout: React.FC<any> = (props) => {
-  const Item = styled(Paper)(({ theme }) => ({
-    backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-    ...theme.typography.body2,
-    padding: theme.spacing(1),
-    textAlign: "center",
-    color: theme.palette.text.secondary,
-    height: "90Vh",
-  }));
+  let orderIdCounter: number = 1;
+
+  const [totalPrice, setTotalPrice] = useState<number>(0);
+  const [totalItems, setTotalItems] = useState<number>(0);
+  const [orderId, setOrderId] = useState<string>("");
+
+  const generateOrderId = () => {
+    const orderPrefix: string = "ORD";
+    const orderID: string = `${orderPrefix}${orderIdCounter
+      .toString()
+      .padStart(4, "0")}`;
+    orderIdCounter++;
+    setOrderId(orderID);
+  };
+
+  const calculateTotalPriceAndItemsCount = () => {
+    let items = 0;
+    let price = 0;
+    props.cart.forEach((cartItem: any) => {
+      items += cartItem.qty;
+      price += cartItem.price * cartItem.qty;
+    });
+    setTotalItems(items);
+    setTotalPrice(price);
+  };
+
+  useEffect(() => {
+    generateOrderId();
+    calculateTotalPriceAndItemsCount();
+  }, [
+    props.cart,
+    totalPrice,
+    totalItems,
+    setTotalItems,
+    setTotalPrice,
+    orderId,
+    setOrderId,
+  ]);
+
+  const handleOrder = () => {};
+
   return (
     <>
       <Grid container spacing={2}>
@@ -51,18 +93,30 @@ const Checkout: React.FC<any> = (props) => {
                 <Typography gutterBottom variant="h5" component="div">
                   Cart Summery
                 </Typography>
+
                 <b>
-                  <Grid
-                    container
-                    justifyContent="unset"
-                    direction="row"
-                    style={{ fontSize: 15 }}
-                  >
+                  <Grid container style={{ fontSize: 15, marginTop: 50 }}>
                     <Grid item xs={2.5}>
-                      Total Price :
+                      Total Price
                     </Grid>
+                    <Grid item xs={3}>
+                      Rs {totalPrice}
+                    </Grid>
+                  </Grid>
+                  <Grid container style={{ fontSize: 15, marginTop: 10 }}>
+                    <Grid item xs={2.5}>
+                      Total Items
+                    </Grid>
+                    <Grid item xs={2.5}>
+                      {totalItems} No's
+                    </Grid>
+                  </Grid>
+                  <Grid container style={{ fontSize: 15, marginTop: 30 }}>
                     <Grid item xs={2}>
-                      Rs 1000
+                      Order Id
+                    </Grid>
+                    <Grid item xs={3.4}>
+                      {orderId}
                     </Grid>
                   </Grid>
                 </b>
@@ -73,7 +127,7 @@ const Checkout: React.FC<any> = (props) => {
                   size="medium"
                   color="success"
                   variant="contained"
-                  style={{ width: "100%", top: 180 }}
+                  style={{ width: "100%", top: 2 }}
                 >
                   Add Order
                 </Button>
