@@ -13,7 +13,6 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import GlobalImg from "../../atoms/image";
 import { useState } from "react";
 import DeleteEmployeeDialog from "../../molecules/delete-employee-dialog";
-import { NavLink as RouterLink } from "react-router-dom";
 
 /**
  * Usage - This component is used to display the records of the admin section.

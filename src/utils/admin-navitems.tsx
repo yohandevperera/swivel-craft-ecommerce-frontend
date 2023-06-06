@@ -23,6 +23,6 @@ export const NavItems: NavBarItemType[] = [
   {
     name: "Order Management",
     icon: <ReceiptIcon />,
-    ridirectRoute: "",
+    ridirectRoute: "/admin/order-management",
   },
 ];

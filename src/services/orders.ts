@@ -21,6 +21,14 @@ export interface OrderType {
   craftId: string;
 }
 
+export interface OrderTableType {
+  orderId: string;
+  _id: string;
+  email: string;
+  totalPrice: number;
+  itemCount: number;
+}
+
 /**
  * Description and Usage - This function will be used
  * to fetch all the Orders from the backend API endpoint
@@ -47,4 +55,14 @@ export async function createOrder(Order: Omit<OrderType, "_id">[]) {
  */
 export async function getOrder(id?: string) {
   return invoke(`api/orders/${id}`, "get", {});
+}
+
+/**
+ * Description and Usage - This function will be used
+ * to fetch a single Order for a given id using the backend API endpoint
+ *
+ * @param id @typedef string
+ */
+export async function getOrderTableData(id?: string) {
+  return invoke(`api/orders/get-orders`, "get", {});
 }

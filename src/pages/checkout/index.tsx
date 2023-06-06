@@ -100,6 +100,7 @@ const Checkout: React.FC<any> = (props) => {
       ) {
         const createdResponse = crudOperations.dataSet;
         toast.success(createdResponse.message, { position: "bottom-right" });
+        generateOrderId();
       }
     } else {
       toast.error("Please Loging to continue order", {

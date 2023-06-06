@@ -5,6 +5,7 @@ import {
   createOrder,
   getAllOrders,
   getOrder,
+  getOrderTableData,
 } from "../../services/orders";
 import _ from "lodash";
 
@@ -74,6 +75,22 @@ export const getSingleOrder = (id?: string) => (dispatch: Dispatch) => {
       }
       const craft = response.data.data;
       dispatch(actions.singleLoadSuccess(craft));
+    })
+    .catch((error) => {
+      dispatch(actions.loadError(error.message));
+      throw Error(error.message);
+    });
+};
+
+export const getTableDataOrders = () => (dispatch: Dispatch) => {
+  dispatch(actions.loadStart());
+  getOrderTableData()
+    .then((response) => {
+      if (_.isEmpty(response) || _.isNull(response)) {
+        throw Error("error get order response null");
+      }
+      const orders = response.data.data;
+      dispatch(actions.loadSuccess(orders));
     })
     .catch((error) => {
       dispatch(actions.loadError(error.message));

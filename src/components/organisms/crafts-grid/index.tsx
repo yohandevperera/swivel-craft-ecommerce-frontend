@@ -1,5 +1,5 @@
 import Grid from "@mui/material/Grid";
-import React, { useState } from "react";
+import React from "react";
 import { CraftType } from "../../../services/crafts";
 import GridItem from "../../molecules/grid-item";
 import _ from "lodash";
@@ -39,10 +39,7 @@ const EmployeeGrid: React.FC<{
         ) : (
           props.gridData.map((item: CraftType) => (
             <Grid item xs={3}>
-              <GridItem
-                item={item}
-                handleAddToCart={props.handleAddToCart}
-              />
+              <GridItem item={item} handleAddToCart={props.handleAddToCart} />
             </Grid>
           ))
         )}
