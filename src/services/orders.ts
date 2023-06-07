@@ -29,6 +29,12 @@ export interface OrderTableType {
   itemCount: number;
 }
 
+export interface OrderMoreInfoType {
+  orderId: string;
+  itemName: string;
+  itemPrice: number;
+}
+
 /**
  * Description and Usage - This function will be used
  * to fetch all the Orders from the backend API endpoint
@@ -54,7 +60,7 @@ export async function createOrder(Order: Omit<OrderType, "_id">[]) {
  * @param id @typedef string
  */
 export async function getOrder(id?: string) {
-  return invoke(`api/orders/${id}`, "get", {});
+  return invoke(`api/orders/get-order/${id}`, "get", {});
 }
 
 /**
