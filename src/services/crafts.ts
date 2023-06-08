@@ -16,6 +16,7 @@ export interface CraftType {
   _id: string;
   name: string;
   categoryId: string;
+  categoryName: string;
   description: string;
   qty: number;
   price: number;

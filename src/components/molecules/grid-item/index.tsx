@@ -62,7 +62,7 @@ const GridItem: React.FC<{
               </Typography>
               <Typography variant="body2" gutterBottom>
                 {/* Later change this to category name */}
-                {`${props.item.categoryId}`}
+                {`${props.item.categoryName}`}
               </Typography>
               <Typography variant="body2" color="text.secondary">
                 {props.item.price}

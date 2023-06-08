@@ -32,23 +32,8 @@ export const loadAllCrafts = () => async (dispatch: Dispatch) => {
     if (_.isEmpty(response.data) || _.isNull(response.data.data)) {
       throw Error("error loading all crafts response null");
     }
-    const crafts: any[] = response.data.data;
-    const restructuredCrafts = await Promise.all(
-      crafts.map(async (craft: CraftType) => {
-        const craftCategory = await getCraftCategory(craft.categoryId);
-        return {
-          name: craft.name,
-          craftCategory: craftCategory?.data?.data?.name,
-          description: craft.description,
-          price: craft.price,
-          qty: craft.qty,
-          photo: craft.photo,
-          _id: craft._id,
-        };
-      })
-    );
-    dispatch(actions.loadSuccess(restructuredCrafts));
-    dispatch(cartActions.loadItems(restructuredCrafts));
+    dispatch(actions.loadSuccess(response.data.data));
+    dispatch(cartActions.loadItems(response.data.data));
   } catch (error: any) {
     dispatch(actions.loadError(error.message));
     throw Error(error.message);
