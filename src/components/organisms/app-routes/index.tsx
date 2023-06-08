@@ -6,6 +6,8 @@ import CraftCategoryManagement from "../../../pages/craft-category-management";
 import LoginAndSignUp from "../../../pages/login-and-signup";
 import Checkout from "../../../pages/checkout";
 import OrderManagement from "../../../pages/order-management";
+import _ from "lodash";
+import ValidateRoutes from "../../atoms/route-validator";
 
 /**
  * Usage - This component is used as a wrapper to wrap all the routes that are used in the frontend.
@@ -18,17 +20,50 @@ const AppRoutes: React.FC = () => {
   return (
     <>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/admin/user-management" element={<UserManagement />} />
-        <Route path="/admin/craft-management/" element={<CraftManagement />} />
-        <Route path="/login" element={<LoginAndSignUp />} />
-        <Route path="/checkout" element={<Checkout />} />
-        <Route
-          path="/admin/craft-category-management/"
-          element={<CraftCategoryManagement />}
-        />
-        <Route path="admin/order-management/" element={<OrderManagement />} />
-        <Route />
+        <>
+          <Route
+            path="/admin/user-management"
+            element={
+              <ValidateRoutes type="admin-route">
+                <CraftManagement />
+              </ValidateRoutes>
+            }
+          />
+          <Route
+            path="/admin/craft-management/"
+            element={
+              <ValidateRoutes type="admin-route">
+                <CraftManagement />
+              </ValidateRoutes>
+            }
+          />
+          <Route
+            path="/admin/craft-category-management/"
+            element={
+              <ValidateRoutes type="admin-route">
+                <CraftCategoryManagement />
+              </ValidateRoutes>
+            }
+          />
+          <Route
+            path="admin/order-management/"
+            element={
+              <ValidateRoutes type="admin-route">
+                <OrderManagement />
+              </ValidateRoutes>
+            }
+          />
+          <Route path="/login" element={<LoginAndSignUp />} />
+          <Route path="/" element={<Home />} />
+          <Route
+            path="/checkout"
+            element={
+              <ValidateRoutes type="user-route">
+                <Checkout />
+              </ValidateRoutes>
+            }
+          />
+        </>
       </Routes>
     </>
   );
