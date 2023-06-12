@@ -6,6 +6,8 @@ import {
   getAllOrders,
   getOrder,
   getOrderTableData,
+  getTopSales,
+  getTotalSales,
 } from "../../services/orders";
 import _ from "lodash";
 

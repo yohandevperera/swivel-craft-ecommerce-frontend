@@ -10,4 +10,6 @@ export default {
   dataSet: null,
   errorMessage: null,
   data: null,
+  topSales: null,
+  totalSales: null,
 };

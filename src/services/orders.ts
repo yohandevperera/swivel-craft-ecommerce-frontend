@@ -72,3 +72,24 @@ export async function getOrder(id?: string) {
 export async function getOrderTableData(id?: string) {
   return invoke(`api/orders/get-orders`, "get", {});
 }
+
+/**
+ * Description and Usage - This function will be used
+ * to fetch a single Order for a given id using the backend API endpoint
+ *
+ * @param id @typedef string
+ */
+export async function getTotalSales() {
+  return invoke(`api/orders/get-total-sales`, "get", {});
+}
+
+
+/**
+ * Description and Usage - This function will be used
+ * to fetch a single Order for a given id using the backend API endpoint
+ *
+ * @param id @typedef string
+ */
+export async function getTopSales() {
+  return invoke(`api/orders/get-top-sales`, "get", {});
+}

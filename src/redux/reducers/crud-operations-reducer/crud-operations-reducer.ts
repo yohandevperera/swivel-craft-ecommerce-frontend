@@ -25,6 +25,8 @@ const crudOperationsReducer = (state = initialState, action: any) => {
         dataSet: null,
         errorMessage: null,
         data: null,
+        topSales: null,
+        totalSales: null,
       };
     case actionTypes.LOAD_SUCCESS:
       return {
@@ -33,6 +35,8 @@ const crudOperationsReducer = (state = initialState, action: any) => {
         dataSet: payload,
         errorMessage: null,
         data: null,
+        topSales: null,
+        totalSales: null,
       };
     case actionTypes.SINGLE_LOAD_SUCCESS:
       return {
@@ -41,6 +45,8 @@ const crudOperationsReducer = (state = initialState, action: any) => {
         dataSet: null,
         errorMessage: null,
         data: payload,
+        topSales: null,
+        totalSales: null,
       };
     case actionTypes.LOAD_ERROR:
       return {

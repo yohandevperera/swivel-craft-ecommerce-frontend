@@ -8,6 +8,7 @@ import Checkout from "../../../pages/checkout";
 import OrderManagement from "../../../pages/order-management";
 import _ from "lodash";
 import ValidateRoutes from "../../atoms/route-validator";
+import AdminHomepage from "../../../pages/admin-home";
 
 /**
  * Usage - This component is used as a wrapper to wrap all the routes that are used in the frontend.
@@ -22,10 +23,18 @@ const AppRoutes: React.FC = () => {
       <Routes>
         <>
           <Route
+            path="/admin"
+            element={
+              <ValidateRoutes type="admin-route">
+                <AdminHomepage />
+              </ValidateRoutes>
+            }
+          />
+          <Route
             path="/admin/user-management"
             element={
               <ValidateRoutes type="admin-route">
-                <CraftManagement />
+                <UserManagement />
               </ValidateRoutes>
             }
           />
