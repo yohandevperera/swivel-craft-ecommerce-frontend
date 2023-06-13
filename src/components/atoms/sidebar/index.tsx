@@ -20,6 +20,15 @@ import { CircularProgress } from "@mui/material";
 import _ from "lodash";
 import { Link } from "react-router-dom";
 
+/**
+ * Usage - This component is used for to display the sidebar navigation items in the admin dashboard
+ *
+ * Description - The component is build based HTML components and material ui components
+ *
+ * @props appBarTitle @typedef string
+ * @props routes @typedef NavBarItemType[]
+ */
+
 const drawerWidth = 340;
 
 const openedMixin = (theme: Theme): CSSObject => ({

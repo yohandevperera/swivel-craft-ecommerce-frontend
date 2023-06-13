@@ -1,5 +1,5 @@
 /**
- * Usage - This file will give the intial state values to the reducer.
+ * Usage - This file will give the intial state values needed for the crud-operations for the reducer.
  *
  * Description - Using this file the intial state value for the reducers can be gained
  */

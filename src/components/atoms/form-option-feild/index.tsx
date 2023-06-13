@@ -16,6 +16,8 @@ import { useEffect, useState } from "react";
  * global form option feild.
  *
  * Description - The component is build based on the material UI option and formik option
+ * 
+ * Note - This can also be used as a api option feild as well which will fetch api data accordingly
  *
  * @props id @typedef string
  * @props name @typedef string
@@ -23,6 +25,9 @@ import { useEffect, useState } from "react";
  * @props isRequired @typedef boolean
  * @props type @typedef React.InputHTMLAttributes<unknown>["type"]
  * @props valuesAndLabels @typedef any[]
+ * @props optionType @typedef "default" | "api-option"
+ * @props optionKeys @typedef any
+ * @props route @typedef any
  */
 
 interface FormOptionFeildProps {

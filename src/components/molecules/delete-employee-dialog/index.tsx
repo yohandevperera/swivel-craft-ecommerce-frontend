@@ -8,13 +8,13 @@ import { useTheme } from "@mui/material/styles";
 import Button from "@mui/material/Button";
 
 /**
- * Usage - This component is used as a dialog box to delete employee records.
+ * Usage - This component is used as a dialog box to delete any dashboard records.
  *
  * Description - The component is build based on the material UI Dialog components
  *
  * @props openState @typedef boolean
  * @props setOpenState @typedef React.Dispatch<React.SetStateAction<boolean>>
- * @props employeeId @typedef string
+ * @props id @typedef string
  * @props handleDelete @typedef function
  */
 

@@ -2,7 +2,7 @@ import actionTypes from "./image-view-uploader-actionTypes";
 import initialState from "./image-view-uploader-intialStates";
 
 /**
- * Usage - This file will manipulate the defined global redux states.
+ * Usage - This file will manipulate the defined global redux states for the image state.
  *
  * Description - All the defined global redux states can be manipulated using this file
  */

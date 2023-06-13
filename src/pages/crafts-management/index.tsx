@@ -19,7 +19,7 @@ import { getAllCrafts, getCraft } from "../../services/crafts";
 import * as Yup from "yup";
 
 /**
- * Usage - This component will directly call the PageHelmet, Header and CraftDataView components.
+ * Usage - This component will be used for crafts manipulations.
  *
  * Description - The component is build based on custom components
  *

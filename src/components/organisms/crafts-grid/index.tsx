@@ -14,7 +14,7 @@ import CircularProgress from "@mui/material/CircularProgress";
  * @props gridData @typedef CraftType[]
  */
 
-const EmployeeGrid: React.FC<{
+const CraftsGrid: React.FC<{
   gridDir: "column" | "row";
   gridData: CraftType[];
   handleAddToCart: (itemId: string) => void;
@@ -48,4 +48,4 @@ const EmployeeGrid: React.FC<{
   );
 };
 
-export default EmployeeGrid;
+export default CraftsGrid;

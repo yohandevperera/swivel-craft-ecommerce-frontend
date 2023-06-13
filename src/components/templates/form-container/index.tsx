@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Sidebar from "../../atoms/sidebar";
 import { NavItems } from "../../../utils/admin-navitems";
 import ContentNavBar from "../../molecules/content-navbar";
@@ -13,7 +13,42 @@ import {
   Button,
 } from "@mui/material";
 import { Form, Formik, FormikHelpers, FormikProps } from "formik";
-import FormFeilds, { formFeildType } from "../../molecules/form-feilds";
+import FormFeilds from "../../molecules/form-feilds";
+
+/**
+ * Usage - This component can be used as a global form container which is used in the admin dashboard.
+ *
+ * Description - The component is build based on the material UI and custom components
+ *
+ * Form manipulation props
+ *
+ * @props formType @typedef "add" | "edit"
+ * @props formRef @typedef React.RefObject<FormikProps<any>>;
+ * @props onFormSubmit @typedef function
+ * @props formFeildData @typedef any
+ * @props formIntialValues @typedef any
+ * @props formValidationSchema @typedef any
+ *
+ * Datatable manipulation props
+ *
+ * @props tableHeadings @typedef string[]
+ * @props tableData @typedef any[]
+ * @props handleDelete @typedef function
+ *
+ * Content Navabar manipulation props
+ *
+ * @props onSearchRefresh @typedef React.MouseEventHandler<HTMLDivElement>
+ * @props searchOnChange @typedef function
+ * @props searchOnClick @typedef React.MouseEventHandler<HTMLButtonElement>
+ * @props searchOptionData @typedef any[]
+ * @props searchValue @typedef string
+ * @props addButtonText @typedef string
+ * @props navBarTitleText @typedef string
+ * @props titleKey @typedef string
+ * @props handleOpenEdit @typedef function
+ * @props setOpenAddFormDialog @typedef React.Dispatch<React.SetStateAction<boolean>>
+ * @props openAddFormDialog @typedef boolean
+ */
 
 interface FormContainerProps {
   // formProps

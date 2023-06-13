@@ -11,7 +11,7 @@ import reduxActions from "../../../redux/reducers/cart-reducer/cart-actions";
 /**
  * Usage - This component is used for to manipulate the craft data view.
  *
- * Description - The component is build based on the Material Ui components and custom components
+ * Description - The component is build based on the Material Ui components and custom components and react redux
  *
  */
 

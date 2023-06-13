@@ -19,6 +19,9 @@ import AddIcon from "@mui/icons-material/Add";
  * @props searchOnClick @typedef React.MouseEventHandler<HTMLButtonElement>
  * @props searchOnChange @typedef function
  * @props onSearchRefresh @typedef React.MouseEventHandler<HTMLDivElement>
+ * @props navBarTitleText @typedef string
+ * @props addButtonText @typedef string
+ * @props addButtonOnClick @typedef React.MouseEventHandler<HTMLButtonElement>
  */
 
 interface ContentNavBarProps {

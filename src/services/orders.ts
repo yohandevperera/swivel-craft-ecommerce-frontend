@@ -21,6 +21,10 @@ export interface OrderType {
   craftId: string;
 }
 
+/**
+ * Description - A global type thats used as
+ * OrderTableType fetch Orders needed for the order table
+ */
 export interface OrderTableType {
   orderId: string;
   _id: string;
@@ -29,6 +33,10 @@ export interface OrderTableType {
   itemCount: number;
 }
 
+/**
+ * Description - A global type thats used as
+ * OrderMoreInfoType fetch Orders needed for the order more info table
+ */
 export interface OrderMoreInfoType {
   orderId: string;
   itemName: string;
@@ -75,10 +83,9 @@ export async function getOrderTableData(id?: string) {
 
 /**
  * Description and Usage - This function will be used
- * to fetch a single Order for a given id using the backend API endpoint
+ * to fetch a total sales using the backend API endpoint
  *
- * @param id @typedef string
- */
+ * */
 export async function getTotalSales() {
   return invoke(`api/orders/get-total-sales`, "get", {});
 }
@@ -86,7 +93,7 @@ export async function getTotalSales() {
 
 /**
  * Description and Usage - This function will be used
- * to fetch a single Order for a given id using the backend API endpoint
+ * to fetch  top sales using the backend API endpoint
  *
  * @param id @typedef string
  */

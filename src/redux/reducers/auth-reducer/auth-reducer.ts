@@ -2,9 +2,9 @@ import actionTypes from "./auth-actionTypes";
 import initialState from "./auth-intialStates";
 
 /**
- * Usage - This file will manipulate the defined global redux states.
+ * Usage - This file will manipulate the defined auth global redux states.
  *
- * Description - All the defined global redux states can be manipulated using this file
+ * Description - All the defined global auth redux states can be manipulated using this file
  */
 
 /**

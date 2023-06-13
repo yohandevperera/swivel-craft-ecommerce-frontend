@@ -1,5 +1,5 @@
 /**
- * Usage - This file will manipulate the redux global actions types.
+ * Usage - This file will manipulate the redux global crud operations actions types.
  *
  * Description - This file consists for all the redux global actions types that will be
  * used to manipulate the redux states

@@ -19,6 +19,13 @@ import loginfeildData from "../../utils/form-feilds/login-form-feilds.json";
 import userRegisterfeildData from "../../utils/form-feilds/users-form-feilds.json";
 import * as Yup from "yup";
 
+/**
+ * Usage - This component will be used for both login and signup manipulations.
+ *
+ * Description - The component is build based on custom components
+ *
+ */
+
 const defaultTheme = createTheme();
 
 const LoginAndSignUp: React.FC = () => {

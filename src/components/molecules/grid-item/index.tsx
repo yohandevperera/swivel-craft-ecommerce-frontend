@@ -13,7 +13,7 @@ import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
  *
  * Description - The component is build based on the Material Ui Paper, Grid and other components
  *
- * @props item @typedef EmployeeType
+ * @props item @typedef CraftType
  * @props handleAddToCart @typedef function
  */
 

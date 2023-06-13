@@ -17,6 +17,9 @@ import FormFileUploadFeild from "../../atoms/form-file-upload-feild";
  * @props required @typedef boolean
  * @props validate @typedef boolean
  * @props valuesAndLabels @typedef any[]
+ * @props optionKeys @typedef {}
+ * @props route @typedef string
+ *
  */
 
 export type formFeildType = {

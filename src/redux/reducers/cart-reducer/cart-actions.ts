@@ -1,5 +1,15 @@
 import actionTypes from "./cart-actionTypes";
 
+/**
+ * Usage - This file will manipulate the redux cart global actions.
+ *
+ * Description - This file consists for all the redux cart global actions that will be used
+ * to manipulate auth data
+ */
+
+/**
+ * function that will handle the cart add action
+ */
 const addToCart = (itemId: string) => {
   return {
     type: actionTypes.ADD_TO_CART,
@@ -9,6 +19,9 @@ const addToCart = (itemId: string) => {
   };
 };
 
+/**
+ * function that will handle the remove from cart action
+ */
 const removeFromCart = (itemId: string) => {
   return {
     type: actionTypes.REMOVE_FROM_CART,
@@ -18,6 +31,9 @@ const removeFromCart = (itemId: string) => {
   };
 };
 
+/**
+ * function that will handle the adjust cart qty action
+ */
 const adjustQty = (itemId: string, value: number) => {
   return {
     type: actionTypes.ADJUST_QTY,
@@ -28,6 +44,9 @@ const adjustQty = (itemId: string, value: number) => {
   };
 };
 
+/**
+ * function that will handle the load current cart item action
+ */
 const loadCurrentItem = (item: any) => {
   return {
     type: actionTypes.LOAD_CURRENT_ITEM,
@@ -35,6 +54,9 @@ const loadCurrentItem = (item: any) => {
   };
 };
 
+/**
+ * function that will handle the load all cart items action
+ */
 const loadItems = (items: any[]) => {
   return {
     type: actionTypes.LOAD_ITEMS,

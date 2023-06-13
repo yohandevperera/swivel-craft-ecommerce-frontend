@@ -6,19 +6,17 @@ import {
   getAllOrders,
   getOrder,
   getOrderTableData,
-  getTopSales,
-  getTotalSales,
 } from "../../services/orders";
 import _ from "lodash";
 
 /**
- * Usage - This file will be used to communcate with the API services via redux.
+ * Usage - This file will be used to communcate with the API order services via redux.
  *
  * Description - This file will act as a mediator for the services and the redux global states
  */
 
 /**
- * Description and Usage - This function that will be used load all the users
+ * Description and Usage - This function that will be used load all the orders
  * to the redux state
  *
  * @param dispatch @typedef Dispatch
@@ -38,11 +36,11 @@ export const loadAllOrders = () => async (dispatch: Dispatch) => {
 };
 
 /**
- * Description and Usage - This function that will be used create Crafts
+ * Description and Usage - This function that will be used create orders
  * by fetching the payload from the redux state
  *
  * @param dispatch @typedef Dispatch
- * @param crafts @typedef Omit<OrderType, "_id">
+ * @param order @typedef Omit<OrderType, "_id">
  */
 export const createOrders =
   (order: Omit<OrderType, "_id">[]) => (dispatch: Dispatch) => {
@@ -84,6 +82,12 @@ export const getSingleOrder = (id?: string) => (dispatch: Dispatch) => {
     });
 };
 
+/**
+ * Description and Usage - This function that will be used to fetch
+ * order data needed for the table
+ *
+ * @param dispatch @typedef Dispatch
+ */
 export const getTableDataOrders = () => (dispatch: Dispatch) => {
   dispatch(actions.loadStart());
   getOrderTableData()

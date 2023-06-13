@@ -71,10 +71,22 @@ export async function getCraftCategory(id?: string) {
   return invoke(`api/craft-categories/get-craft-category/${id}`, "get", {});
 }
 
+/**
+ * Description and Usage - This function will be used
+ * to search a single CraftCategory for a given name using the backend API endpoint
+ *
+ * @param name @typedef string
+ */
 export async function searchCraftCategoryByName(name?: string) {
   return invoke(`api/craft-categories/find-by-name/${name}`, "get", {});
 }
 
+/**
+ * Description and Usage - This function will be used
+ * to fetch all CraftCategory names using the backend API endpoint
+ *
+ * @param id @typedef string
+ */
 export async function getCraftCategoriesByName() {
   return invoke(`api/craft-categories/get-category-by-name`, "get", {});
 }

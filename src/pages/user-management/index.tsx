@@ -19,7 +19,7 @@ import { getAllUsers, getUser } from "../../services/users";
 import * as Yup from "yup";
 
 /**
- * Usage - This component will directly call the PageHelmet, Header and CraftDataView components.
+ * Usage - This component will be used for user management manipulations.
  *
  * Description - The component is build based on custom components
  *

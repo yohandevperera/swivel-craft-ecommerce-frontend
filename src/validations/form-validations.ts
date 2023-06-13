@@ -8,19 +8,12 @@ import * as Yup from "yup";
  *
  */
 
-/**
- *
- * Description - The map that will validate the
- * form feilds according to its feild type
- *
- */
+
 
 /**
- * Description - Restructuring the feild validation
- * map
+ * Description - The below function will validate the feilds given as the input
  *
  */
-
 export const toValidateFeilds = (formFeilds: any[]) => {
   let mappedformValidations = {};
   const formValidationsFeilds: any = formFeilds.map((feild) => {

@@ -6,6 +6,13 @@ import { useEffect, useState } from "react";
 import _ from "lodash";
 import { getTopSales, getTotalSales } from "../../services/orders";
 
+/**
+ * Usage - This component act as a page component to render the top sales and total sales in the admin dashboard.
+ *
+ * Description - The component is build based on custom components such as the form container
+ *
+ */
+
 const AdminHomepage: React.FC = () => {
   const [topSales, setTopSales] = useState<number>(0);
   const [totalSales, setTotalSales] = useState<number>(0);

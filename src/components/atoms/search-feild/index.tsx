@@ -25,6 +25,7 @@ import { Tooltip } from "@mui/material";
  * @props searchValue @typedef any
  * @props searchOnChange @typedef function
  * @props onSearchRefresh @typedef function
+ * @props sortComponent @typedef React.ReactNode
  */
 
 interface SearchFeildProps {

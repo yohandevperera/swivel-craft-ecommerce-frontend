@@ -21,6 +21,14 @@ import { toast, ToastContainer } from "react-toastify";
 import { createOrders } from "../../redux/thunks/orders-thunk";
 import { useDispatch, useSelector } from "react-redux";
 
+/**
+ * Usage - This component act as a page component to render the cart items the user has picked and also 
+ * this page will handle the order flow as well.
+ *
+ * Description - The component is build based on custom components, redux and material ui components
+ *
+ */
+
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
   ...theme.typography.body2,

@@ -3,14 +3,14 @@ import actions from "../reducers/image-view-uploader-reducer/image-view-uploader
 import _ from "lodash";
 
 /**
- * Usage - This file will be used to communcate with the API services via redux.
+ * Usage - This file will be used to to upload base64 images via redux.
  *
  * Description - This file will act as a mediator for the services and the redux global states
  */
 
 /**
- * Description and Usage - This function that will be used load all the crafts
- * to the redux state
+ * Description and Usage - This function that will be used to get and set a base64 image to the
+ * redux state
  *
  * @param dispatch @typedef Dispatch
  */

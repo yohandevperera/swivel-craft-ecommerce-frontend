@@ -1,6 +1,17 @@
 import _ from "lodash";
 import ErrorTemplate from "../../templates/error-tempate";
 
+
+/**
+ * Usage - This component can be used as a
+ * global component to validate routes based on the localStorage userObject.
+ *
+ * Description - The component is build based HTML components and material ui components
+ * 
+ * @props children @typedef any
+ * @props type @typedef "admin-route" | "user-route"
+ */
+
 const ValidateRoutes: React.FC<{
   children: any;
   type: "admin-route" | "user-route";

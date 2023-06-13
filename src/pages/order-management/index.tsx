@@ -10,7 +10,7 @@ import {
 import { useSelector } from "react-redux";
 
 /**
- * Usage - This component will directly call the PageHelmet, Header and CraftDataView components.
+ * Usage - This component will be used for admin order management manipulations.
  *
  * Description - The component is build based on custom components
  *

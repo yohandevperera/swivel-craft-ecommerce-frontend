@@ -15,7 +15,7 @@ import {
 import _ from "lodash";
 
 /**
- * Usage - This file will be used to communcate with the API services via redux.
+ * Usage - This file will be used to communcate with the API user services via redux.
  *
  * Description - This file will act as a mediator for the services and the redux global states
  */
@@ -43,7 +43,7 @@ export const loadAllUsers = () => async (dispatch: Dispatch) => {
 };
 
 /**
- * Description and Usage - This function that will be used create Users
+ * Description and Usage - This function that will be used create users
  * by fetching the payload from the redux state
  *
  * @param dispatch @typedef Dispatch
@@ -174,10 +174,10 @@ export const searchUsers = (name: string) => (dispatch: Dispatch) => {
 
 /**
  * Description and Usage - This function that will be used to fetch
- * a single user for a given user id
+ * a single user for a given username and password
  *
  * @param dispatch @typedef Dispatch
- * @param id @typedef string
+ * @param loginParams @typedef AuthType
  */
 export const login = (loginParams: AuthType) => (dispatch: Dispatch) => {
   dispatch(authActions.authLoadStart());

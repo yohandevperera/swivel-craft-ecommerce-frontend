@@ -9,6 +9,15 @@ import {
 import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 import TrendingDownIcon from "@mui/icons-material/TrendingDown";
 
+/**
+ * Usage - This component is used for to display the statistics such as top sales and total sales
+ *
+ * Description - The component is build based HTML components and material ui components
+ *
+ * @props type @typedef "top-sales" | "total-sales"
+ * @props info @typedef string | number
+ */
+
 const StatisticCard: React.FC<{
   type: "top-sales" | "total-sales";
   info: string | number;

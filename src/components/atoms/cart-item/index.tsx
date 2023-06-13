@@ -7,8 +7,10 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import DeleteIcon from "@mui/icons-material/Delete";
+
+// The below type will be used as a global type to manipulate Cart operations
 
 export type CartItemType = {
   photo: string;
@@ -17,6 +19,15 @@ export type CartItemType = {
   _id?: number;
   qty: number;
 };
+
+/**
+ * Usage - This component is used for to render a single cart item
+ * Description - The component is build based on the material UI components like TextFeilds, etc
+ *
+ * @props cartItem @typedef CartItemType
+ * @props onDeleteClick @typedef function 
+ * @props adjustQty @typedef function
+ */
 
 export interface CartItemProps {
   cartItem: CartItemType;

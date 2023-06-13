@@ -15,11 +15,11 @@ import _ from "lodash";
 /**
  * Usage - This file will be used to communcate with the API services via redux.
  *
- * Description - This file will act as a mediator for the services and the redux global states
+ * Description - This file will act as a mediator for the craft category services and the redux global states
  */
 
 /**
- * Description and Usage - This function that will be used load all the users
+ * Description and Usage - This function that will be used load all the craft categories
  * to the redux state
  *
  * @param dispatch @typedef Dispatch
@@ -39,7 +39,7 @@ export const loadAllCraftsCategories = () => async (dispatch: Dispatch) => {
 };
 
 /**
- * Description and Usage - This function that will be used create Crafts
+ * Description and Usage - This function that will be used create craft categories
  * by fetching the payload from the redux state
  *
  * @param dispatch @typedef Dispatch
@@ -63,7 +63,7 @@ export const createCraftCategories =
   };
 
 /**
- * Description and Usage - This function can be used edit Crafts
+ * Description and Usage - This function can be used edit crafts categories
  * by fetching the payload from the redux state
  *
  * @param dispatch @typedef Dispatch
@@ -89,7 +89,7 @@ export const editCraftCategories =
   };
 
 /**
- * Description and Usage - This function that will be used remove Crafts
+ * Description and Usage - This function that will be used remove crafts categories
  * by fetching the craft id as the payload from the redux state
  *
  * @param dispatch @typedef Dispatch
@@ -113,7 +113,7 @@ export const removeCraftCategory = (id: string) => (dispatch: Dispatch) => {
 
 /**
  * Description and Usage - This function that will be used to fetch
- * a single craft for a given craft id
+ * a single craft category for a given craft category id
  *
  * @param dispatch @typedef Dispatch
  * @param id @typedef string
@@ -136,10 +136,10 @@ export const getSinglecraft = (id?: string) => (dispatch: Dispatch) => {
 
 /**
  * Description and Usage - This function that will be used as a
- * search function to search an craft from the firstname
+ * search function to search an craft category from the name
  *
  * @param dispatch @typedef Dispatch
- * @param firstname @typedef any
+ * @param name @typedef any
  */
 export const searchCrafts = (name: string) => (dispatch: Dispatch) => {
   dispatch(actions.loadStart());
@@ -157,6 +157,12 @@ export const searchCrafts = (name: string) => (dispatch: Dispatch) => {
     });
 };
 
+/**
+ * Description and Usage - This function that will be used load all the craft categories
+ * by name to the redux state
+ *
+ * @param dispatch @typedef Dispatch
+ */
 export const loadAllCraftsCategoryNames = () => async (dispatch: Dispatch) => {
   try {
     dispatch(actions.loadStart());

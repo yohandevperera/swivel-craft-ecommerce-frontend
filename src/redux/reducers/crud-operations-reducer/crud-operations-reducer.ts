@@ -2,7 +2,7 @@ import actionTypes from "./crud-operations-actionTypes";
 import initialState from "./crud-operations-intialStates";
 
 /**
- * Usage - This file will manipulate the defined global redux states.
+ * Usage - This file will manipulate the defined global redux states for the crud operations.
  *
  * Description - All the defined global redux states can be manipulated using this file
  */

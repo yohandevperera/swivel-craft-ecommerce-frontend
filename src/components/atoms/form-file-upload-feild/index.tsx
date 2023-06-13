@@ -5,7 +5,7 @@ import { getAndSetImageBase64 } from "../../../redux/thunks/image-view-uploader-
 
 /**
  * Usage - This component can be used as a
- * global form text feild.
+ * global file uploding feild.
  *
  * Description - The component is build based on the material UI textFeild and formik feild
  *
@@ -27,6 +27,7 @@ interface FormFeildProps {
 const FormFileUploadFeild: React.FC<FormFeildProps> = (props) => {
   const dispatch = useDispatch();
 
+  // the below function will convert the file upload data stream into a base64 datatype
   const convertBase64 = (file: any) => {
     return new Promise((resolve, reject) => {
       const fileReader = new FileReader();

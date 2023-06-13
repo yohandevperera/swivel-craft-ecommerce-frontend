@@ -1,7 +1,7 @@
 import actionTypes from "./crud-operations-actionTypes";
 
 /**
- * Usage - This file will manipulate the redux global actions.
+ * Usage - This file will manipulate the redux crud operations global actions.
  *
  * Description - This file consists for all the redux global actions that will be used
  * to manipulate data

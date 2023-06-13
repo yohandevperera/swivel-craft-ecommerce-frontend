@@ -12,6 +12,17 @@ import Paper from "@mui/material/Paper";
 import { OrderMoreInfoType, OrderTableType } from "../../../services/orders";
 import _ from "lodash";
 
+/**
+ * Usage - This component is used to display the orders records in the admin section.
+ *
+ * Description - The component is build based on the Material Ui components
+ *
+ * @props orderData @typedef OrderTableType[]
+ * @props handleViewMoreInfo @typedef string[]
+ * @props type @typedef "default" | "more-info"
+ * @props orderMoreInfo @typedef OrderMoreInfoType[]
+ */
+
 interface OrdersTableProps {
   orderData: OrderTableType[];
   handleViewMoreInfo: (orderId: string) => void;

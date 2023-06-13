@@ -8,11 +8,12 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 
 /**
  * Usage - This component can be used as a
- * global header for to display a title.
+ * global header for to display a title and the cart item data as well as the login button
  *
- * Description - The component is build based on the material UI Card
+ * Description - The component is build based on the material UI Card and React Redux
  *
  * @props title @typedef string
+ * @props cart @typedef any
  */
 
 const Div = styled("div")(({ theme }) => ({

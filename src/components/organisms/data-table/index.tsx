@@ -22,6 +22,7 @@ import DeleteEmployeeDialog from "../../molecules/delete-employee-dialog";
  * @props tableData @typedef EmployeeType[]
  * @props tableHeadings @typedef string[]
  * @props handleDelete @typedef function
+ * @props handleOpenEdit @typedef function
  */
 
 const DataTable: React.FC<{

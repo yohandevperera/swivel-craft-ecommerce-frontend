@@ -75,6 +75,12 @@ export async function getCraft(id?: string) {
   return invoke(`api/crafts/${id}`, "get", {});
 }
 
+/**
+ * Description and Usage - This function will be used
+ * to search a single craft for a given name using the backend API endpoint
+ *
+ * @param name @typedef string
+ */
 export async function searchCraftByName(name?: string) {
   return invoke(`api/crafts/find-by-name/${name}`, "get", {});
 }

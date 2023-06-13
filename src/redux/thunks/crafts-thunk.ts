@@ -14,13 +14,13 @@ import { getCraftCategory } from "../../services/craft-categories";
 import cartActions from "../reducers/cart-reducer/cart-actions";
 
 /**
- * Usage - This file will be used to communcate with the API services via redux.
+ * Usage - This file will be used to communcate with the API craft services via redux.
  *
  * Description - This file will act as a mediator for the services and the redux global states
  */
 
 /**
- * Description and Usage - This function that will be used load all the users
+ * Description and Usage - This function that will be used load all the crafts
  * to the redux state
  *
  * @param dispatch @typedef Dispatch
@@ -41,7 +41,7 @@ export const loadAllCrafts = () => async (dispatch: Dispatch) => {
 };
 
 /**
- * Description and Usage - This function that will be used create Crafts
+ * Description and Usage - This function that will be used create crafts
  * by fetching the payload from the redux state
  *
  * @param dispatch @typedef Dispatch
@@ -66,7 +66,7 @@ export const createCrafts =
   };
 
 /**
- * Description and Usage - This function can be used edit Crafts
+ * Description and Usage - This function can be used edit crafts
  * by fetching the payload from the redux state
  *
  * @param dispatch @typedef Dispatch
@@ -91,7 +91,7 @@ export const editCrafts =
   };
 
 /**
- * Description and Usage - This function that will be used remove Crafts
+ * Description and Usage - This function that will be used remove crafts
  * by fetching the craft id as the payload from the redux state
  *
  * @param dispatch @typedef Dispatch
@@ -138,10 +138,10 @@ export const getSinglecraft = (id?: string) => (dispatch: Dispatch) => {
 
 /**
  * Description and Usage - This function that will be used as a
- * search function to search an craft from the firstname
+ * search function to search an craft from the name
  *
  * @param dispatch @typedef Dispatch
- * @param firstname @typedef any
+ * @param name @typedef any
  */
 export const searchCrafts = (name: string) => (dispatch: Dispatch) => {
   dispatch(actions.loadStart());
